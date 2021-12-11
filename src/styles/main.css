@@ -1,0 +1,21 @@
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    background-color: #bf1722;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    display: inline-block;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* .navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: initial;
+} */
