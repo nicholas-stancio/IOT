@@ -3,7 +3,7 @@ import Register from '../views/pages/register';
 import Dashboard from '../views/pages/dashboard';
 
 const routes = {
-  '/': Dashboard, // default page TODO: Balikin ke login abis selesai develop
+  '/': Login,
   '/login': Login,
   '/register': Register,
   '/dashboard': Dashboard,
