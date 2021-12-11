@@ -1,0 +1,3355 @@
+[
+    {
+        "id": "65f999f3a6504d70",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "99a83e4423b85851",
+        "type": "http request",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q={{payload}}&appid=60df8a2839717717d82aa5b4b39de627",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 650,
+        "y": 2480,
+        "wires": [
+            [
+                "1f06c5d9cf4f2742",
+                "5b7ff60430f5d897",
+                "c44eb3261f6fe66d",
+                "464e70f72e2e8646"
+            ]
+        ]
+    },
+    {
+        "id": "4836ebe9c5c23caf",
+        "type": "inject",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Bali",
+        "payloadType": "str",
+        "x": 190,
+        "y": 2480,
+        "wires": [
+            [
+                "e88f96f2ecc77f6d"
+            ]
+        ]
+    },
+    {
+        "id": "c7a9a0588fb801fa",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "Change City",
+        "url": "/weather/real-time/change-city",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 2340,
+        "wires": [
+            [
+                "743b035035ae953a"
+            ]
+        ]
+    },
+    {
+        "id": "1e2977ae84ce0d8f",
+        "type": "inject",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Jakarta",
+        "payloadType": "str",
+        "x": 190,
+        "y": 2540,
+        "wires": [
+            [
+                "e88f96f2ecc77f6d"
+            ]
+        ]
+    },
+    {
+        "id": "743b035035ae953a",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.city",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 2420,
+        "wires": [
+            [
+                "e88f96f2ecc77f6d"
+            ]
+        ]
+    },
+    {
+        "id": "1f06c5d9cf4f2742",
+        "type": "mqtt out",
+        "z": "65f999f3a6504d70",
+        "d": true,
+        "name": "",
+        "topic": "nico/raw-data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d74bb850e7fcc16b",
+        "x": 860,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "5b16d17237571454",
+        "type": "mqtt in",
+        "z": "65f999f3a6504d70",
+        "d": true,
+        "name": "",
+        "topic": "nico/raw-data",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "d74bb850e7fcc16b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 190,
+        "y": 2700,
+        "wires": [
+            [
+                "5b7ff60430f5d897"
+            ]
+        ]
+    },
+    {
+        "id": "e88f96f2ecc77f6d",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "10 min loop",
+        "func": "function loop () {\n    node.send(msg);\n}\n\nsetInterval(loop, 600000);  \n\nloop();\n\n\n//return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 2480,
+        "wires": [
+            [
+                "99a83e4423b85851"
+            ]
+        ]
+    },
+    {
+        "id": "8d110a895e652b95",
+        "type": "template",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.id}},{{payload.time}},{{payload.time_stamp}},{{payload.name}},{{payload.weather.0.main}},{{payload.weather.0.description}},{{payload.weather.1.main}},{{payload.weather.1.description}},{{payload.main.temp}},{{payload.main.pressure}},{{payload.main.humidity}},{{payload.visibility}},{{payload.wind.speed}},{{payload.clouds.all}},",
+        "output": "str",
+        "x": 540,
+        "y": 2660,
+        "wires": [
+            [
+                "2bac00d2d14d4dd6",
+                "bad6bd7132856065"
+            ]
+        ]
+    },
+    {
+        "id": "5b7ff60430f5d897",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Add time",
+        "func": "msg.payload.time_stamp = Date.now() / 1000\nmsg.payload.time = Date()\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 2660,
+        "wires": [
+            [
+                "8d110a895e652b95"
+            ]
+        ]
+    },
+    {
+        "id": "80c0793ae85af6e1",
+        "type": "inject",
+        "z": "65f999f3a6504d70",
+        "name": "delete data",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1600,
+        "y": 1580,
+        "wires": [
+            [
+                "dbd565578489258a"
+            ]
+        ]
+    },
+    {
+        "id": "dbd565578489258a",
+        "type": "file",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "filename": "data.csv",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "delete",
+        "encoding": "none",
+        "x": 1840,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2bac00d2d14d4dd6",
+        "type": "file",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "filename": "data.csv",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 700,
+        "y": 2660,
+        "wires": [
+            [
+                "a7c1439482452d8e"
+            ]
+        ]
+    },
+    {
+        "id": "7d3dfda08dfa0eb2",
+        "type": "inject",
+        "z": "65f999f3a6504d70",
+        "name": "Get Current CSV",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1620,
+        "y": 1680,
+        "wires": [
+            [
+                "3917e83e231ffa82"
+            ]
+        ]
+    },
+    {
+        "id": "3bf43140b6eb4b27",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2010,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "3917e83e231ffa82",
+        "type": "file in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "filename": "data.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1800,
+        "y": 1680,
+        "wires": [
+            [
+                "3bf43140b6eb4b27",
+                "aaff4d61f546378a"
+            ]
+        ]
+    },
+    {
+        "id": "aaff4d61f546378a",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1990,
+        "y": 1760,
+        "wires": [
+            [
+                "ab4c95a862fc3e19"
+            ]
+        ]
+    },
+    {
+        "id": "ab4c95a862fc3e19",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2170,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "6f2cdf985723b115",
+        "type": "mqtt in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d74bb850e7fcc16b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 1580,
+        "y": 2020,
+        "wires": [
+            [
+                "d1c19c4ab1c82eb0"
+            ]
+        ]
+    },
+    {
+        "id": "ebb22a0dd60ea7a8",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1890,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "d1c19c4ab1c82eb0",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1730,
+        "y": 2020,
+        "wires": [
+            [
+                "ebb22a0dd60ea7a8"
+            ]
+        ]
+    },
+    {
+        "id": "a7c1439482452d8e",
+        "type": "file in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "filename": "data.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 860,
+        "y": 2660,
+        "wires": [
+            [
+                "646b7140070f8cf2"
+            ]
+        ]
+    },
+    {
+        "id": "646b7140070f8cf2",
+        "type": "mqtt out",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d74bb850e7fcc16b",
+        "x": 1020,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "3eacc99004340ac8",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Temp",
+        "tstampField": "tstamp",
+        "dataField": "temp",
+        "disableDiscover": false,
+        "x": 2230,
+        "y": 2000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d86635f22d3d9ce1",
+        "type": "inject",
+        "z": "65f999f3a6504d70",
+        "name": "Get Graph",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1600,
+        "y": 1860,
+        "wires": [
+            [
+                "f3f6b18ba172ba50"
+            ]
+        ]
+    },
+    {
+        "id": "f3f6b18ba172ba50",
+        "type": "file in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "filename": "data.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1760,
+        "y": 1860,
+        "wires": [
+            [
+                "a8883acac6b8d74c"
+            ]
+        ]
+    },
+    {
+        "id": "e08f6bb2387d9c7e",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2090,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "a8883acac6b8d74c",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1910,
+        "y": 1860,
+        "wires": [
+            [
+                "e08f6bb2387d9c7e",
+                "fb3c92ad5a317dfc"
+            ]
+        ]
+    },
+    {
+        "id": "fb3c92ad5a317dfc",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Split data",
+        "func": "var msgList = [];\n\nmsg.payload.forEach(function(element) {\n  msgList.push({payload:element})\n})\n\nreturn [msgList];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2040,
+        "y": 1940,
+        "wires": [
+            [
+                "3eacc99004340ac8",
+                "0d357bf9cf1d4481",
+                "32c3ce7b2796a778",
+                "d8dbe071924a3ef2",
+                "92b909a506038780",
+                "a68578fb2ef02752",
+                "d8b4c82bfa0ee874"
+            ]
+        ]
+    },
+    {
+        "id": "0d357bf9cf1d4481",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2250,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "32c3ce7b2796a778",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Pressure",
+        "tstampField": "tstamp",
+        "dataField": "pressure",
+        "disableDiscover": false,
+        "x": 2240,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8dbe071924a3ef2",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Humidity",
+        "tstampField": "tstamp",
+        "dataField": "humidity",
+        "disableDiscover": false,
+        "x": 2240,
+        "y": 2120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92b909a506038780",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Visibility",
+        "tstampField": "tstamp",
+        "dataField": "visibility",
+        "disableDiscover": false,
+        "x": 2240,
+        "y": 2180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a68578fb2ef02752",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Wind Speed",
+        "tstampField": "tstamp",
+        "dataField": "wind_speed",
+        "disableDiscover": false,
+        "x": 2250,
+        "y": 2240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8b4c82bfa0ee874",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Clouds",
+        "tstampField": "tstamp",
+        "dataField": "clouds",
+        "disableDiscover": false,
+        "x": 2240,
+        "y": 2300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6c608d17a29b4e3",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1030,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "d8ef4d04c7e5e10c",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 770,
+        "y": 1720,
+        "wires": [
+            [
+                "869ea4ac89540aba"
+            ]
+        ]
+    },
+    {
+        "id": "bad6bd7132856065",
+        "type": "mqtt out",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/single-data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d74bb850e7fcc16b",
+        "x": 720,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "5831559804edeea2",
+        "type": "mqtt in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/single-data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d74bb850e7fcc16b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 200,
+        "y": 2880,
+        "wires": [
+            [
+                "fe6a5adc0e106a62"
+            ]
+        ]
+    },
+    {
+        "id": "d83dd43003cd619b",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "Real Time",
+        "info": "",
+        "x": 180,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "5cfc5425cde3135f",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "City",
+        "info": "",
+        "x": 170,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "afe1796afefe832a",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/city",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 1720,
+        "wires": [
+            [
+                "8d6d902be3bb02f0"
+            ]
+        ]
+    },
+    {
+        "id": "8d6d902be3bb02f0",
+        "type": "http request",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q={{payload.city}}&appid=60df8a2839717717d82aa5b4b39de627",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 430,
+        "y": 1720,
+        "wires": [
+            [
+                "88a2f29175d3e3ba",
+                "b27d4589c8195a15"
+            ]
+        ]
+    },
+    {
+        "id": "88a2f29175d3e3ba",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.payload.lon = msg.payload.coord.lon;\nmsg.payload.lat = msg.payload.coord.lat;\n\nmsg.topic=\"INSERT INTO `t_city` (`id`, `name`, `timezone`, `lon`, `lat`) VALUES (:id, :name, :timezone, :lon, :lat);\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 1720,
+        "wires": [
+            [
+                "d8ef4d04c7e5e10c"
+            ]
+        ]
+    },
+    {
+        "id": "869ea4ac89540aba",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Data Successfully Added",
+        "func": "if(msg.payload == '[object Object]'){\n    msg.payload = 'Data Successfully Added';\n} else {\n    msg.payload = 'Error. Cannot Add Data';\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 1720,
+        "wires": [
+            [
+                "e5e9713fc0caea5d"
+            ]
+        ]
+    },
+    {
+        "id": "6fe45269ae8ca64c",
+        "type": "catch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "scope": [
+            "d8ef4d04c7e5e10c",
+            "d0701058902976d8",
+            "865ed83c48ab8420",
+            "10307ae8c5f371b5",
+            "6c08ac9f06eb57b2",
+            "ac476b5cab0ff6c6",
+            "b93355993be89984",
+            "dfcad5cb8e3fb424",
+            "6cd43d88e80f8e38"
+        ],
+        "uncaught": false,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "17bee1ac5fcd4c62"
+            ]
+        ]
+    },
+    {
+        "id": "e5e9713fc0caea5d",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "17bee1ac5fcd4c62",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Get Error Msg",
+        "func": "msg.payload = msg.error.message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "44545b19f06d390f"
+            ]
+        ]
+    },
+    {
+        "id": "476b568916c92cf8",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Error Handling",
+        "func": "if (msg.payload.cod && msg.payload.cod !== 200){\n    msg.payload = msg.payload.message;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1800,
+        "wires": [
+            [
+                "e5e9713fc0caea5d"
+            ]
+        ]
+    },
+    {
+        "id": "b27d4589c8195a15",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "Biar lebih rapih",
+        "rules": [],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 1800,
+        "wires": [
+            [
+                "476b568916c92cf8"
+            ]
+        ]
+    },
+    {
+        "id": "c44eb3261f6fe66d",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Error Handling",
+        "func": "if (msg.payload.cod && msg.payload.cod !== 200){\n    msg.payload = msg.payload.message;\n    return msg;\n}\n\nlet temp = msg.payload.name;\nmsg.payload = \"City changed to \" + temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 2480,
+        "wires": [
+            [
+                "f6c608d17a29b4e3"
+            ]
+        ]
+    },
+    {
+        "id": "d85912d14da10246",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/city",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 2020,
+        "wires": [
+            [
+                "a82dd9dac25ad3b6"
+            ]
+        ]
+    },
+    {
+        "id": "a82dd9dac25ad3b6",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM `t_city`\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 2020,
+        "wires": [
+            [
+                "d0701058902976d8"
+            ]
+        ]
+    },
+    {
+        "id": "d0701058902976d8",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 570,
+        "y": 2020,
+        "wires": [
+            [
+                "ce0f211e0815feb6"
+            ]
+        ]
+    },
+    {
+        "id": "ce0f211e0815feb6",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "d2c75c3e1216871b",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/city/:name",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 2140,
+        "wires": [
+            [
+                "a0f69a68b324bb8a"
+            ]
+        ]
+    },
+    {
+        "id": "a0f69a68b324bb8a",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.payload.city_name = msg.req.params.name;\n\nmsg.topic=\"SELECT * FROM t_city WHERE name = :city_name\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 2140,
+        "wires": [
+            [
+                "865ed83c48ab8420"
+            ]
+        ]
+    },
+    {
+        "id": "f4666d25696db6fe",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 970,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "865ed83c48ab8420",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 590,
+        "y": 2140,
+        "wires": [
+            [
+                "74e4db68fb97f75d"
+            ]
+        ]
+    },
+    {
+        "id": "74e4db68fb97f75d",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Check if data exists",
+        "func": "if (msg.payload.length == 0){\n    msg.payload = 'No Data'\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 2140,
+        "wires": [
+            [
+                "f4666d25696db6fe"
+            ]
+        ]
+    },
+    {
+        "id": "fe6a5adc0e106a62",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 380,
+        "y": 2880,
+        "wires": [
+            [
+                "4d708110f91e9a28"
+            ]
+        ]
+    },
+    {
+        "id": "10307ae8c5f371b5",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 690,
+        "y": 2880,
+        "wires": [
+            [
+                "705f8bd5e5c12b99"
+            ]
+        ]
+    },
+    {
+        "id": "4d708110f91e9a28",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "if (!msg.payload.weather_main_1){\n    msg.payload.weather_main_1 = null\n}\nif (!msg.payload.weather_main_2){\n    msg.payload.weather_main_2 = null\n}\nif (!msg.payload.weather_desc_1){\n    msg.payload.weather_desc_1 = null\n}\nif (!msg.payload.weather_desc_2){\n    msg.payload.weather_desc_2 = null\n}\n\n\nmsg.topic=\"INSERT INTO `t_weather_realtime` (`time_stamp`, `time`, `city_id`, `location`, `weather_main_1`, `weather_desc_1`, `weather_main_2`, `weather_desc_2`,`temp`, `pressure`, `humidity`, `visibility`, `wind_speed`, `clouds`) VALUES (:time_stamp, :time, :id, :location, :weather_main_1, :weather_desc_1, :weather_main_2, :weather_desc_2, :temp, :pressure, :humidity, :visibility, :wind_speed, :clouds);\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 2880,
+        "wires": [
+            [
+                "10307ae8c5f371b5"
+            ]
+        ]
+    },
+    {
+        "id": "705f8bd5e5c12b99",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "d": true,
+        "name": "Data Successfully Added",
+        "func": "if(msg.payload == '[object Object]'){\n    msg.payload = 'Data Successfully Added';\n} else {\n    msg.payload = 'Error. Cannot Add Data';\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 2880,
+        "wires": [
+            [
+                "2f29df2e3586643e"
+            ]
+        ]
+    },
+    {
+        "id": "2f29df2e3586643e",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "694b9774985229a4",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/real-time",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 3000,
+        "wires": [
+            [
+                "d2b51c2676a06b5f"
+            ]
+        ]
+    },
+    {
+        "id": "d2b51c2676a06b5f",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM `t_weather_realtime`\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 3000,
+        "wires": [
+            [
+                "6c08ac9f06eb57b2"
+            ]
+        ]
+    },
+    {
+        "id": "6c08ac9f06eb57b2",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 570,
+        "y": 3000,
+        "wires": [
+            [
+                "e1cc039c5b1c38d2"
+            ]
+        ]
+    },
+    {
+        "id": "e1cc039c5b1c38d2",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 3000,
+        "wires": []
+    },
+    {
+        "id": "e0164a3d08185fbe",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/real-time/query",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 3120,
+        "wires": [
+            [
+                "d05acbf47d81aeea"
+            ]
+        ]
+    },
+    {
+        "id": "d05acbf47d81aeea",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_weather_realtime WHERE location = :City AND time_stamp >= :Start AND time_stamp <= :End\";\n//SELECT * FROM t_weather_realtime WHERE location = 'Jakarta' AND time_stamp >= 1635264540 AND time_stamp <= 1635265175\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 3120,
+        "wires": [
+            [
+                "ac476b5cab0ff6c6"
+            ]
+        ]
+    },
+    {
+        "id": "4e830f19d81b3a7b",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 3120,
+        "wires": []
+    },
+    {
+        "id": "ac476b5cab0ff6c6",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 610,
+        "y": 3120,
+        "wires": [
+            [
+                "64b6f48a3d956954"
+            ]
+        ]
+    },
+    {
+        "id": "64b6f48a3d956954",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Check if data exists",
+        "func": "if (msg.payload.length == 0){\n    msg.payload = 'No Data'\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 3120,
+        "wires": [
+            [
+                "4e830f19d81b3a7b"
+            ]
+        ]
+    },
+    {
+        "id": "44545b19f06d390f",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 560,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9d3631bc5bc976d1",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "Historical",
+        "info": "",
+        "x": 180,
+        "y": 3260,
+        "wires": []
+    },
+    {
+        "id": "1f1819cb35c88444",
+        "type": "http request",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={{payload.lat}}&lon={{payload.lon}}&dt={{payload.time}}&appid=60df8a2839717717d82aa5b4b39de627",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 390,
+        "y": 3460,
+        "wires": [
+            [
+                "032fbf881b7acf10"
+            ]
+        ]
+    },
+    {
+        "id": "0b2b30b6f885b1ae",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/historical/query",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 3360,
+        "wires": [
+            [
+                "eaa68145a6105020"
+            ]
+        ]
+    },
+    {
+        "id": "eaa68145a6105020",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Get Lon & Lat",
+        "func": "msg.topic=\"SELECT * FROM t_city WHERE name = :City\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 3360,
+        "wires": [
+            [
+                "b93355993be89984"
+            ]
+        ]
+    },
+    {
+        "id": "b93355993be89984",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 670,
+        "y": 3360,
+        "wires": [
+            [
+                "07cb2b0513c12fee"
+            ]
+        ]
+    },
+    {
+        "id": "045aea5359531abb",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Combine Data",
+        "func": "let temp = msg.payload[0]\nmsg.payload = {}\n\nvar date = Date.now() / 1000;\ndate = Math.round(date - 432000); // 432000 itu 5 days di unix timestamp\n\n\nmsg.payload.time = date\nmsg.payload.lon = temp.lon\nmsg.payload.lat = temp.lat\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 3460,
+        "wires": [
+            [
+                "1f1819cb35c88444"
+            ]
+        ]
+    },
+    {
+        "id": "032fbf881b7acf10",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Error Handling",
+        "func": "if (msg.payload.cod && msg.payload.cod !== 200){\n    msg.payload = msg.payload.message;\n    msg.topic = 'error'\n    return msg;\n}\nelse {\n    msg.payload = msg.payload.hourly;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 3460,
+        "wires": [
+            [
+                "693e266384476f7f"
+            ]
+        ]
+    },
+    {
+        "id": "cd7e8b89935f5009",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 3440,
+        "wires": []
+    },
+    {
+        "id": "dfcad5cb8e3fb424",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 690,
+        "y": 3560,
+        "wires": [
+            [
+                "6a7ab2500d686b44"
+            ]
+        ]
+    },
+    {
+        "id": "1452e4a18b348fa1",
+        "type": "split",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 170,
+        "y": 3560,
+        "wires": [
+            [
+                "528395d0ec27e117"
+            ]
+        ]
+    },
+    {
+        "id": "fc05fa9998ab0e75",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.payload.city = msg.req.query.City;\nmsg.payload.uid = msg.payload.city + String(msg.payload.dt);\n\n// if (typeof(msg.payload.weather[0].main) == \"undefined\"){\n//     msg.payload.weather_main_1 = null\n// }\n// else{\n//     msg.payload.weather_main_1 = msg.payload.weather[0].main;\n// }\n\n// if (msg.payload.weather[1].main){\n//     msg.payload.weather_main_2 = null\n// }\n// else{\n//     msg.payload.weather_main_2 = msg.payload.weather[1].main;\n// }\n\n// if (!msg.payload.weather[0].description){\n//     msg.payload.weather_desc_1 = null\n// }\n// else{\n//     msg.payload.weather_main_1 = msg.payload.weather[0].description;\n// }\n\n// if (!msg.payload.weather[1].description){\n//     msg.payload.weather_desc_2 = null\n// }\n// else{\n//     msg.payload.weather_main_2 = msg.payload.weather[1].description;\n// }\n\n// if (!msg.payload.rain[\"1h\"]){\n//     msg.payload.rain = null\n// }\n// else{\n//     msg.payload.rain = msg.payload.rain[\"1h\"];\n// }\n\n\nmsg.topic=\"INSERT INTO `t_weather_historical` (`uid`, `time_stamp`, `location`, `dew_point`, `uvi`, `weather_main_1`, `weather_desc_1`, `weather_main_2`, `weather_desc_2`,`temp`, `pressure`, `humidity`, `visibility`, `wind_speed`, `clouds`, `rain`) VALUES (:uid, :dt, :city, :dew_point, :uvi, :weather_main_1, :weather_desc_1, :weather_main_2, :weather_desc_2, :temp, :pressure, :humidity, :visibility, :wind_speed, :clouds, :rain) ON DUPLICATE KEY UPDATE `uid`=:uid;\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 3560,
+        "wires": [
+            [
+                "dfcad5cb8e3fb424"
+            ]
+        ]
+    },
+    {
+        "id": "528395d0ec27e117",
+        "type": "template",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.dt}},{{payload.temp}},{{payload.dew_point}},{{payload.uvi}},{{payload.weather.0.main}},{{payload.weather.0.description}},{{payload.weather.1.main}},{{payload.weather.1.description}},{{payload.temp}},{{payload.pressure}},{{payload.humidity}},{{payload.visibility}},{{payload.wind_speed}},{{payload.clouds}},{{payload.rain.1h}}",
+        "output": "str",
+        "x": 300,
+        "y": 3560,
+        "wires": [
+            [
+                "da17ab52d84be541"
+            ]
+        ]
+    },
+    {
+        "id": "da17ab52d84be541",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "dt,temp,dew_point,uvi,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds,rain",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": true,
+        "include_null_values": true,
+        "x": 430,
+        "y": 3560,
+        "wires": [
+            [
+                "fc05fa9998ab0e75"
+            ]
+        ]
+    },
+    {
+        "id": "693e266384476f7f",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "Check Error",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 770,
+        "y": 3460,
+        "wires": [
+            [
+                "cd7e8b89935f5009"
+            ],
+            [
+                "1452e4a18b348fa1"
+            ]
+        ]
+    },
+    {
+        "id": "07cb2b0513c12fee",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "Check Empty",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 850,
+        "y": 3360,
+        "wires": [
+            [
+                "6afcda2cf0c48b2b"
+            ],
+            [
+                "045aea5359531abb"
+            ]
+        ]
+    },
+    {
+        "id": "6afcda2cf0c48b2b",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "No Data",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 3360,
+        "wires": [
+            [
+                "cd7e8b89935f5009"
+            ]
+        ]
+    },
+    {
+        "id": "6a7ab2500d686b44",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "Check Error",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "[object Object]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "[object Object]",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 850,
+        "y": 3560,
+        "wires": [
+            [
+                "495e23d99abf95bc"
+            ],
+            [
+                "c3b50eb7a8668de5"
+            ]
+        ]
+    },
+    {
+        "id": "495e23d99abf95bc",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Cannot Add Data",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 3540,
+        "wires": [
+            [
+                "cd7e8b89935f5009"
+            ]
+        ]
+    },
+    {
+        "id": "6c71e445a32bc1e3",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.payload = {}\n\nmsg.payload.city = msg.req.query.City\nmsg.payload.start = msg.req.query.Start\nmsg.payload.end = msg.req.query.End\n\nmsg.topic=\"SELECT * FROM t_weather_historical WHERE location = :city AND time_stamp >= :start AND time_stamp <= :end\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 3660,
+        "wires": [
+            [
+                "6cd43d88e80f8e38"
+            ]
+        ]
+    },
+    {
+        "id": "6cd43d88e80f8e38",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 470,
+        "y": 3660,
+        "wires": [
+            [
+                "f4723f460c4d2809"
+            ]
+        ]
+    },
+    {
+        "id": "c3b50eb7a8668de5",
+        "type": "join",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 170,
+        "y": 3660,
+        "wires": [
+            [
+                "6c71e445a32bc1e3"
+            ]
+        ]
+    },
+    {
+        "id": "defca13c8668be09",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 3660,
+        "wires": []
+    },
+    {
+        "id": "f4723f460c4d2809",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Check if data exists",
+        "func": "if (msg.payload.length == 0){\n    msg.payload = 'No Data'\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 3660,
+        "wires": [
+            [
+                "defca13c8668be09"
+            ]
+        ]
+    },
+    {
+        "id": "82fc2afa63490a2f",
+        "type": "mqtt in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/single-data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d74bb850e7fcc16b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 1600,
+        "y": 2520,
+        "wires": [
+            [
+                "359189000f8b73a9"
+            ]
+        ]
+    },
+    {
+        "id": "359189000f8b73a9",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1770,
+        "y": 2520,
+        "wires": [
+            [
+                "7a3d63bb605894fb",
+                "9fcb48d046180df3",
+                "9184369b22ae4bac",
+                "a7d51db5a2d4703f",
+                "e62fe61f080a0b79",
+                "be7ea44957dfe910",
+                "4f96a5022d0ff92c"
+            ]
+        ]
+    },
+    {
+        "id": "7a3d63bb605894fb",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Temp",
+        "tstampField": "time_stamp",
+        "dataField": "temp",
+        "disableDiscover": false,
+        "x": 1950,
+        "y": 2520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9fcb48d046180df3",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Pressure",
+        "tstampField": "time_stamp",
+        "dataField": "pressure",
+        "disableDiscover": false,
+        "x": 1960,
+        "y": 2580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9184369b22ae4bac",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Humidity",
+        "tstampField": "time_stamp",
+        "dataField": "humidity",
+        "disableDiscover": false,
+        "x": 1960,
+        "y": 2640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7d51db5a2d4703f",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Visibility",
+        "tstampField": "time_stamp",
+        "dataField": "visibility",
+        "disableDiscover": false,
+        "x": 1960,
+        "y": 2700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e62fe61f080a0b79",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Wind Speed",
+        "tstampField": "time_stamp",
+        "dataField": "wind_speed",
+        "disableDiscover": false,
+        "x": 1970,
+        "y": 2760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be7ea44957dfe910",
+        "type": "iot-datasource",
+        "z": "65f999f3a6504d70",
+        "name": "Clouds",
+        "tstampField": "time_stamp",
+        "dataField": "clouds",
+        "disableDiscover": false,
+        "x": 1960,
+        "y": 2820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f96a5022d0ff92c",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1970,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "27ad5f6ff3086bee",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "Check Error",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 2540,
+        "wires": [
+            [
+                "df4a6707541640f0"
+            ]
+        ]
+    },
+    {
+        "id": "464e70f72e2e8646",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "d": true,
+        "name": "Error Handling",
+        "func": "if (msg.payload.cod && msg.payload.cod !== 200){\n    msg.payload = msg.payload.message;\n    msg.topic = 'error'\n    return msg;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 2540,
+        "wires": [
+            [
+                "27ad5f6ff3086bee"
+            ]
+        ]
+    },
+    {
+        "id": "df4a6707541640f0",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 2540,
+        "wires": []
+    },
+    {
+        "id": "bbad2418e8f2e7de",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "Error Handling",
+        "info": "",
+        "x": 190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e046d7467630336d",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - register",
+        "info": "",
+        "x": 190,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "40205cdf02cdb2df",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/register",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "cc1a5521b1c074ce",
+                "579a279e01fcc60f"
+            ]
+        ]
+    },
+    {
+        "id": "cc1a5521b1c074ce",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check password validity",
+        "func": "// temp = msg.payload.password.length\n// msg.payload = temp\n// return msg\n\nif(msg.payload.password === msg.payload.confirmPassword){\n    if(msg.payload.password.length >= 8){\n        return msg;\n    }\n    else {\n        msg.payload = 'password length must be >= 8'\n        return msg;\n    }\n}\nelse {\n    msg.payload = 'password and confirm-password must be the same'\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "d0acb67c24fc288a"
+            ]
+        ]
+    },
+    {
+        "id": "d0c1cbce9588f304",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d0acb67c24fc288a",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user WHERE id = :id\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "70dae20c8fc1221a"
+            ]
+        ]
+    },
+    {
+        "id": "70dae20c8fc1221a",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [
+                "89a2f8f52daf6933"
+            ]
+        ]
+    },
+    {
+        "id": "c5479309ec76bf97",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check data validity",
+        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'No user exist with this id and password';\n    return msg;\n}\nelse {\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 520,
+        "wires": [
+            [
+                "9e3bdfde26e08961"
+            ]
+        ]
+    },
+    {
+        "id": "89a2f8f52daf6933",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check data validity",
+        "func": "if (msg.payload.length === 0) {\n    return msg;\n}\nelse {\n    msg.topic = 'error';\n    msg.payload = 'this id is taken, please change the id';\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 360,
+        "wires": [
+            [
+                "e038b6b3d322ec3b"
+            ]
+        ]
+    },
+    {
+        "id": "e038b6b3d322ec3b",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 360,
+        "wires": [
+            [
+                "d0c1cbce9588f304"
+            ],
+            [
+                "2472a34cd4720a89"
+            ]
+        ]
+    },
+    {
+        "id": "2472a34cd4720a89",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "prepare data",
+        "func": "msg.payload = {};\n\nmsg.payload.id = msg.req.body.id;\nmsg.payload.password = msg.req.body.password;\nmsg.payload.uid = 'uid' + String(Date.now());\nmsg.payload.registered_date = new Date();\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 400,
+        "wires": [
+            [
+                "9f5c714f3c2bbfde"
+            ]
+        ]
+    },
+    {
+        "id": "9f5c714f3c2bbfde",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"INSERT INTO `t_user` (`uid`, `id`, `password`, `registered_date`) VALUES (:uid, :id, :password, :registered_date);\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 400,
+        "wires": [
+            [
+                "efa06bede98cafcb"
+            ]
+        ]
+    },
+    {
+        "id": "efa06bede98cafcb",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1510,
+        "y": 400,
+        "wires": [
+            [
+                "a3a79fe07570cebb"
+            ]
+        ]
+    },
+    {
+        "id": "6aef2a795c0d3d87",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "api register",
+        "statusCode": "",
+        "headers": {},
+        "x": 1990,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a3a79fe07570cebb",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "user registered",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "user registered",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1680,
+        "y": 400,
+        "wires": [
+            [
+                "98e6f23a8194696d"
+            ]
+        ]
+    },
+    {
+        "id": "b3dcf4d1d710556a",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - login",
+        "info": "",
+        "x": 180,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "de98cbd50d75e72c",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 520,
+        "wires": [
+            [
+                "a239372414a8014c"
+            ]
+        ]
+    },
+    {
+        "id": "a239372414a8014c",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user WHERE id = :id AND password = :password\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 520,
+        "wires": [
+            [
+                "95b809482eef745c"
+            ]
+        ]
+    },
+    {
+        "id": "95b809482eef745c",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "c5479309ec76bf97"
+            ]
+        ]
+    },
+    {
+        "id": "705a64f832af94ad",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 950,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9e3bdfde26e08961",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 520,
+        "wires": [
+            [
+                "705a64f832af94ad"
+            ],
+            [
+                "397445db72215eab"
+            ]
+        ]
+    },
+    {
+        "id": "397445db72215eab",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "prepare data",
+        "func": "tempId = msg.payload[0].id;\nmsg.payload = {};\n\nmsg.payload.id = tempId;\nmsg.payload.token = 'tkn' + String(Date.now());\nmsg.payload.created_date = new Date();\nmsg.payload.is_active = true;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 580,
+        "wires": [
+            [
+                "d28586fd33b9793a",
+                "71b868e74d66cbe1"
+            ]
+        ]
+    },
+    {
+        "id": "d28586fd33b9793a",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"INSERT INTO `t_user_token` (`token`, `id`, `created_date`, `is_active`) VALUES (:token, :id, :created_date, :is_active);\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 580,
+        "wires": [
+            [
+                "ae2fb18b50464df1"
+            ]
+        ]
+    },
+    {
+        "id": "ae2fb18b50464df1",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1290,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e8d7db6d113b579",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - logout",
+        "info": "",
+        "x": 190,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "6384f6524a80e729",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/logout",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 700,
+        "wires": [
+            [
+                "e50e5c252e4d3026"
+            ]
+        ]
+    },
+    {
+        "id": "59a626d4401af831",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check data validity",
+        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'No user exist with this id and password';\n    return msg;\n}\nelse {\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 700,
+        "wires": [
+            [
+                "3e9bdd8363c3dcbc"
+            ]
+        ]
+    },
+    {
+        "id": "e50e5c252e4d3026",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user WHERE id = :id AND password = :password\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 700,
+        "wires": [
+            [
+                "c01483d2b7bfc580"
+            ]
+        ]
+    },
+    {
+        "id": "c01483d2b7bfc580",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 470,
+        "y": 700,
+        "wires": [
+            [
+                "59a626d4401af831"
+            ]
+        ]
+    },
+    {
+        "id": "3e9bdd8363c3dcbc",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 700,
+        "wires": [
+            [
+                "d31475e262271eb7"
+            ],
+            [
+                "76bff4a813172193"
+            ]
+        ]
+    },
+    {
+        "id": "d31475e262271eb7",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 950,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "a5deecd38bcbb04b",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"UPDATE `t_user_token` SET is_active = 0 WHERE token = :token AND id = :id;\"\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1890,
+        "y": 760,
+        "wires": [
+            [
+                "33f4b342dd361363"
+            ]
+        ]
+    },
+    {
+        "id": "33f4b342dd361363",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 2030,
+        "y": 760,
+        "wires": [
+            [
+                "1a537dade641c3b9"
+            ]
+        ]
+    },
+    {
+        "id": "76bff4a813172193",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "prepare data",
+        "func": "tempId = msg.payload[0].id;\ntempToken = msg.req.body.token;\nmsg.payload = {};\n\nmsg.payload.id = tempId;\nmsg.payload.token = msg.req.body.token;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 740,
+        "wires": [
+            [
+                "b4ec00212cc8ac83"
+            ]
+        ]
+    },
+    {
+        "id": "1a537dade641c3b9",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Logout Success",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2200,
+        "y": 760,
+        "wires": [
+            [
+                "b2bc17343de08706"
+            ]
+        ]
+    },
+    {
+        "id": "3211c5505dc2eb1d",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "api logout",
+        "statusCode": "",
+        "headers": {},
+        "x": 2500,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "bf97b5e87e7f97f7",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check data validity",
+        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.req.body.id === msg.payload[0].id){\n        return msg;\n    }\n    else{\n        msg.topic = 'error'\n        msg.payload = \"This token doesn't match your credentials\";\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 740,
+        "wires": [
+            [
+                "af6e4a1eaf33c3c2"
+            ]
+        ]
+    },
+    {
+        "id": "b4ec00212cc8ac83",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user_token WHERE token = :token\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 740,
+        "wires": [
+            [
+                "02d1e81fb7f1d043"
+            ]
+        ]
+    },
+    {
+        "id": "02d1e81fb7f1d043",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1250,
+        "y": 740,
+        "wires": [
+            [
+                "bf97b5e87e7f97f7"
+            ]
+        ]
+    },
+    {
+        "id": "af6e4a1eaf33c3c2",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1590,
+        "y": 740,
+        "wires": [
+            [
+                "3b811544e0c5dd55"
+            ],
+            [
+                "22f5b83226230519"
+            ]
+        ]
+    },
+    {
+        "id": "3b811544e0c5dd55",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1730,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "22f5b83226230519",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "prepare data",
+        "func": "tempId = msg.payload[0].id;\ntempToken = msg.req.body.token;\nmsg.payload = {};\n\nmsg.payload.id = tempId;\nmsg.payload.token = msg.req.body.token;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 760,
+        "wires": [
+            [
+                "a5deecd38bcbb04b"
+            ]
+        ]
+    },
+    {
+        "id": "cf2a3e740b6b2330",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - get weather",
+        "info": "",
+        "x": 200,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "cc6f659ca32c7283",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/weather/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 900,
+        "wires": [
+            [
+                "c7aa5d679253784b"
+            ]
+        ]
+    },
+    {
+        "id": "6362410145edbe16",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM `t_weather_realtime`\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 920,
+        "wires": [
+            [
+                "2195a5c1bb503901"
+            ]
+        ]
+    },
+    {
+        "id": "2195a5c1bb503901",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1090,
+        "y": 920,
+        "wires": [
+            [
+                "ed692b57e4e6fe5f"
+            ]
+        ]
+    },
+    {
+        "id": "705b5fe35a12a28c",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "api weather",
+        "statusCode": "",
+        "headers": {},
+        "x": 1390,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "7f2efc78d87757cb",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check token validity",
+        "func": "msg.req.body.id = msg.payload[0].id\nmsg.req.body.token = msg.payload[0].token;\n\nif (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.payload[0].is_active === 1){\n        return msg;\n    }\n    else {\n        msg.topic = 'error'\n        msg.payload = 'This token is not valid';\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 900,
+        "wires": [
+            [
+                "2563a3f586df00e0"
+            ]
+        ]
+    },
+    {
+        "id": "c7aa5d679253784b",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user_token WHERE token = :token\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 900,
+        "wires": [
+            [
+                "1653c67e59bfbaf2"
+            ]
+        ]
+    },
+    {
+        "id": "1653c67e59bfbaf2",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 470,
+        "y": 900,
+        "wires": [
+            [
+                "7f2efc78d87757cb"
+            ]
+        ]
+    },
+    {
+        "id": "2563a3f586df00e0",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 900,
+        "wires": [
+            [
+                "fe053411f1f39640"
+            ],
+            [
+                "6362410145edbe16"
+            ]
+        ]
+    },
+    {
+        "id": "fe053411f1f39640",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 950,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "d43f56385f82c2d1",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - save log",
+        "info": "",
+        "x": 190,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "2bfb8f39d5335658",
+        "type": "complete",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "scope": [
+            "6aef2a795c0d3d87",
+            "3211c5505dc2eb1d",
+            "705b5fe35a12a28c",
+            "9107d26c5c3de1c0"
+        ],
+        "uncaught": false,
+        "x": 190,
+        "y": 1100,
+        "wires": [
+            [
+                "85f129f3d93c06dd"
+            ]
+        ]
+    },
+    {
+        "id": "9107d26c5c3de1c0",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "api login",
+        "statusCode": "",
+        "headers": {},
+        "x": 1300,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "85f129f3d93c06dd",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "topic",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 1100,
+        "wires": [
+            [
+                "b5f53ccaa3006c05"
+            ]
+        ]
+    },
+    {
+        "id": "b2bc17343de08706",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "set topic",
+        "func": "msg.topic = {\"description\":\"logout\",\"id\":msg.req.body.id,\"token\":msg.req.body.token,\"time\":new Date()}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2360,
+        "y": 760,
+        "wires": [
+            [
+                "3211c5505dc2eb1d"
+            ]
+        ]
+    },
+    {
+        "id": "71b868e74d66cbe1",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "set topic",
+        "func": "msg.topic = {\"description\":\"login\",\"id\":msg.req.body.id,\"token\":msg.payload.token,\"time\":new Date()}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 540,
+        "wires": [
+            [
+                "9107d26c5c3de1c0"
+            ]
+        ]
+    },
+    {
+        "id": "98e6f23a8194696d",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "set topic",
+        "func": "msg.topic = {\"description\":\"register\",\"id\":msg.req.body.id,\"token\":\"no token\",\"time\":new Date()}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 400,
+        "wires": [
+            [
+                "6aef2a795c0d3d87"
+            ]
+        ]
+    },
+    {
+        "id": "b5f53ccaa3006c05",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"INSERT INTO `t_access_log` (`description`, `id`, `token`, `time`) VALUES (:description, :id, :token, :time);\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1100,
+        "wires": [
+            [
+                "e2721373c89f1494"
+            ]
+        ]
+    },
+    {
+        "id": "e2721373c89f1494",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 650,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed692b57e4e6fe5f",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "set topic",
+        "func": "msg.topic = {\"description\":\"Get Weather\",\"id\":msg.req.body.id,\"token\":msg.req.body.token,\"time\":new Date()}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 920,
+        "wires": [
+            [
+                "705b5fe35a12a28c"
+            ]
+        ]
+    },
+    {
+        "id": "822bb8ad667e23fc",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - get log",
+        "info": "",
+        "x": 190,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "f06389e57c88d3b8",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/log",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 1300,
+        "wires": [
+            [
+                "a4d3e2903f9bae79"
+            ]
+        ]
+    },
+    {
+        "id": "a4d3e2903f9bae79",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM `t_access_log`\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1300,
+        "wires": [
+            [
+                "db6850fdd121844a"
+            ]
+        ]
+    },
+    {
+        "id": "db6850fdd121844a",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 490,
+        "y": 1300,
+        "wires": [
+            [
+                "4da2a4e4c57e96f8"
+            ]
+        ]
+    },
+    {
+        "id": "4da2a4e4c57e96f8",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "579a279e01fcc60f",
+        "type": "debug",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3bd46d6b31c3b712",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - check token",
+        "info": "",
+        "x": 200,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "a732b28f13159c4c",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/checkToken",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 1500,
+        "wires": [
+            [
+                "77981a74a5d4590c"
+            ]
+        ]
+    },
+    {
+        "id": "34a498a2992d3d52",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check token validity",
+        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.payload[0].is_active === 1){\n        return msg;\n    }\n    else {\n        msg.topic = 'error'\n        msg.payload = 'This token is not valid';\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1500,
+        "wires": [
+            [
+                "df49d52690912ad0"
+            ]
+        ]
+    },
+    {
+        "id": "77981a74a5d4590c",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user_token WHERE token = :token\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1500,
+        "wires": [
+            [
+                "6e103c764fd0d732"
+            ]
+        ]
+    },
+    {
+        "id": "6e103c764fd0d732",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 510,
+        "y": 1500,
+        "wires": [
+            [
+                "34a498a2992d3d52"
+            ]
+        ]
+    },
+    {
+        "id": "df49d52690912ad0",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 850,
+        "y": 1500,
+        "wires": [
+            [
+                "d3ae75789d2ff364"
+            ],
+            [
+                "857bf9acc93c0ca4"
+            ]
+        ]
+    },
+    {
+        "id": "d3ae75789d2ff364",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1150,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "857bf9acc93c0ca4",
+        "type": "change",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "This token is valid",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 1520,
+        "wires": [
+            [
+                "d3ae75789d2ff364"
+            ]
+        ]
+    },
+    {
+        "id": "d74bb850e7fcc16b",
+        "type": "mqtt-broker",
+        "name": "hive mq",
+        "broker": "mqtt://broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "87c580715c90182b",
+        "type": "MySQLdatabase",
+        "name": "Weather DB",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "weather_db",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
