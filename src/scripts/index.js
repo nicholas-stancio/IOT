@@ -1,3 +1,4 @@
+import 'regenerator-runtime';
 import '../styles/main.css';
 import '../styles/main.scss';
 import './component/nav-bar';
