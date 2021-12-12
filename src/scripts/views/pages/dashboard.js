@@ -9,7 +9,7 @@ const Dashboard = {
     api.checkToken(token);
 
     return `
-    <h1>Dashboard</h1>
+    <h1>Welcome</h1>
     `;
   },
 
