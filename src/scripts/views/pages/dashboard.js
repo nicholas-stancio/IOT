@@ -11,7 +11,7 @@ const Dashboard = {
 
     return `
       <div id="embedDiv">
-        <embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 92.8vh;">
+        <embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 93.45vh;">
       </div>
     `;
   },
@@ -19,7 +19,7 @@ const Dashboard = {
   async afterRender() {
     $('.navBarNodeRed').on("click", () => {
       $('#embedDiv').empty();
-      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/#flow/65f999f3a6504d70" style="width: 100%; height: 92.8vh;">');
+      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/#flow/65f999f3a6504d70" style="width: 100%; height: 93.45vh;">');
     });
 
     $('.navBarMySql').on("click", () => {
@@ -35,7 +35,7 @@ const Dashboard = {
 
     $('.navBarDashboard').on("click", () => {
       $('#embedDiv').empty();
-      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 92.8vh;">');
+      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 93.45vh;">');
     });
   },
 };

@@ -27,7 +27,7 @@ class NavigationBar extends HTMLElement {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item logoutMobile">
                 <div class="dropdown d-inline">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                     Menu
                   </button>
 
@@ -48,7 +48,7 @@ class NavigationBar extends HTMLElement {
             <span class="navbar-text logoutDesktop">
 
               <div class="dropdown d-inline">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                   Menu
                 </button>
 
