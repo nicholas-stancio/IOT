@@ -9,7 +9,7 @@ Projek IOT by Nicholas Stancio Saka
 5. local server available on 'http://localhost:8080/'
 
 # Online live server
-http://34.87.31.189/ver_1.1
+http://34.124.248.36/ver_1.1
 
 # Upcoming
 - Node-red Dashboard

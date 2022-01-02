@@ -1,7 +1,11 @@
 import 'regenerator-runtime';
+import 'bootstrap';
+
 import '../styles/main.css';
 import '../styles/main.scss';
-import './component/nav-bar';
+
+import './components/nav-bar';
+
 import App from './views/app';
 
 const app = new App({

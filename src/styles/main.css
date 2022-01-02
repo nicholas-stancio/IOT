@@ -15,6 +15,49 @@
     top: 0;
 }
 
+.vh-80 {
+    height: 80vh;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+a:visited {
+    text-decoration: none;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+
+a:active {
+    text-decoration: none;
+}
+
+@media screen and (min-width: 992px) {
+    #logoutDesktop {
+        display: block;
+    }
+
+    #logoutMobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #logoutDesktop {
+        display: none;
+    }
+
+    #logoutMobile {
+        display: block;
+    }
+}
+
 /* .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: initial;
