@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import api from '../../global/api';
 
 const Dashboard = {
@@ -9,12 +10,33 @@ const Dashboard = {
     api.checkToken(token);
 
     return `
-    <embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 94.5vh;">
+      <div id="embedDiv">
+        <embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 93vh;">
+      </div>
     `;
   },
 
   async afterRender() {
-    // $('nav-bar').show();
+    $('.navBarNodeRed').on("click", () => {
+      $('#embedDiv').empty();
+      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/" style="width: 100%; height: 93vh;">');
+    });
+
+    $('.navBarMySql').on("click", () => {
+      $('#embedDiv').empty();
+      $('#embedDiv').html(`
+        <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: 80vh;">
+            <div class="inline-block align-middle">
+              <h2 >PHP My Admin will open in another tab</h2>
+            </div>
+        </div>
+      `);
+    });
+
+    $('.navBarDashboard').on("click", () => {
+      $('#embedDiv').empty();
+      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 93vh;">');
+    });
   },
 };
 

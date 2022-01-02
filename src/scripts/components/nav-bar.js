@@ -25,15 +25,43 @@ class NavigationBar extends HTMLElement {
           </button>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item" id="logoutMobile">
+              <li class="nav-item logoutMobile">
+                <div class="dropdown d-inline">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu
+                  </button>
+
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item pointer navBarNodeRed">Node Red</a></li>
+                    <li><a class="dropdown-item pointer navBarMySql" href="http://34.124.248.36/phpmyadmin/" target="_blank">MY SQL</a></li>
+                    <li><a class="dropdown-item pointer navBarDashboard">Dashboard</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item logoutMobile">
                 <a class="nav-link" href="${antrisLink}">About Me</a>
               </li>
-              <li class="nav-item" id="logoutMobile">
+              <li class="nav-item logoutMobile">
                 <a class="nav-link" href="${loginLink}">Logout</a>
               </li>
             </ul>
-            <span class="navbar-text" id="logoutDesktop">
-              <a href="${antrisLink}" class="mx-2">About Me</a> <a href="${loginLink}" class="mx-1"><b>Logout</b></a>
+            <span class="navbar-text logoutDesktop">
+
+              <div class="dropdown d-inline">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item pointer navBarNodeRed">Node Red</a></li>
+                  <li><a class="dropdown-item pointer navBarMySql" href="http://34.124.248.36/phpmyadmin/" target="_blank">MY SQL</a></li>
+                  <li><a class="dropdown-item pointer navBarDashboard">Dashboard</a></li>
+                </ul>
+              </div>
+
+              <a href="${antrisLink}" class="mx-2">About Me</a> 
+              <a href="${loginLink}" class="mx-1"><b>Logout</b></a>
+              
             </span>
           </div>
         </div>
