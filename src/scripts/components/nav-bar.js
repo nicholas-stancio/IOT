@@ -1,5 +1,8 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable max-len */
+
+import api from '../global/api';
+
 /* eslint-disable require-jsdoc */
 class NavigationBar extends HTMLElement {
   constructor() {
@@ -8,6 +11,9 @@ class NavigationBar extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    $('.loginLink').on('click', () => {
+      api.logOut();
+    });
   }
 
   async render() {
@@ -25,7 +31,14 @@ class NavigationBar extends HTMLElement {
           </button>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
               <li class="nav-item logoutMobile">
+                <a class="nav-link" href="${antrisLink}" target="_blank">About Me</a>
+              </li>
+              <li class="nav-item logoutMobile">
+                <a class="nav-link loginLink" href="${loginLink}">Logout</a>
+              </li>
+              <li class="nav-item logoutMobile" style="margin: 8px 0px 4px;">
                 <div class="dropdown d-inline">
                   <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                     Menu
@@ -38,12 +51,7 @@ class NavigationBar extends HTMLElement {
                   </ul>
                 </div>
               </li>
-              <li class="nav-item logoutMobile">
-                <a class="nav-link" href="${antrisLink}">About Me</a>
-              </li>
-              <li class="nav-item logoutMobile">
-                <a class="nav-link" href="${loginLink}">Logout</a>
-              </li>
+              
             </ul>
             <span class="navbar-text logoutDesktop">
 
@@ -59,8 +67,8 @@ class NavigationBar extends HTMLElement {
                 </ul>
               </div>
 
-              <a href="${antrisLink}" class="mx-2">About Me</a> 
-              <a href="${loginLink}" class="mx-1"><b>Logout</b></a>
+              <a href="${antrisLink}" class="mx-2" target="_blank">About Me</a> 
+              <a href="${loginLink}" class="mx-1 loginLink"><b>Logout</b></a>
               
             </span>
           </div>

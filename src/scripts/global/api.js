@@ -5,12 +5,6 @@
 /* eslint-disable require-jsdoc */
 import API_ENDPOINT from './api-endpoint';
 
-const api = {
-  signIn: (user) => signIn(user),
-  signUp: (user) => signUp(user),
-  checkToken: (token) => checkToken(token),
-};
-
 function signUp(user) {
   return fetch(API_ENDPOINT.SIGN_UP, {
     method: 'POST',
@@ -50,6 +44,26 @@ function signIn(user) {
     });
 }
 
+function logOut() {
+  return fetch(API_ENDPOINT.LOG_OUT, {
+    method: 'POST',
+    body: JSON.stringify({ 'token': sessionStorage.getItem('accessToken') }),
+    headers: { 'Content-type': 'application/json' },
+  }).then((response) => response.text())
+    .then((data) => {
+      console.log(data);
+      // if (data === 'user registered') {
+      //   alert(`${data}. Please login with your credentials`);
+      //   window.location.href = '#/login';
+      // } else {
+      //   $('#registerApiInvalid').html(data);
+      //   $('#registerApiInvalid').show();
+      // }
+    })
+    .catch((err) => {
+    });
+}
+
 function checkToken(token) {
   return fetch(API_ENDPOINT.CHECK_TOKEN, {
     method: 'POST',
@@ -58,14 +72,21 @@ function checkToken(token) {
   }).then((response) => response.text())
     .then((data) => {
       if (data === 'This token is valid') {
-        console.log(data);
-      } else {
-        alert(data);
-        window.location.href = '#/login';
+        return true;
       }
+      alert(data);
+      window.location.href = '#/login';
+      return false;
     })
     .catch((err) => {
     });
 }
+
+const api = {
+  signIn: (user) => signIn(user),
+  signUp: (user) => signUp(user),
+  checkToken: (token) => checkToken(token),
+  logOut,
+};
 
 export default api;
