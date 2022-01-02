@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 /* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
@@ -47,18 +48,13 @@ function signIn(user) {
 function logOut() {
   return fetch(API_ENDPOINT.LOG_OUT, {
     method: 'POST',
-    body: JSON.stringify({ 'token': sessionStorage.getItem('accessToken') }),
+    body: JSON.stringify({ token: sessionStorage.getItem('accessToken') }),
     headers: { 'Content-type': 'application/json' },
   }).then((response) => response.text())
     .then((data) => {
-      console.log(data);
-      // if (data === 'user registered') {
-      //   alert(`${data}. Please login with your credentials`);
-      //   window.location.href = '#/login';
-      // } else {
-      //   $('#registerApiInvalid').html(data);
-      //   $('#registerApiInvalid').show();
-      // }
+      if (data !== 'Logout Success') {
+        alert(data);
+      }
     })
     .catch((err) => {
     });

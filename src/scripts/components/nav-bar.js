@@ -11,7 +11,7 @@ class NavigationBar extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    $('.loginLink').on('click', () => {
+    $('.LogoutLink').on('click', () => {
       api.logOut();
     });
   }
@@ -36,7 +36,7 @@ class NavigationBar extends HTMLElement {
                 <a class="nav-link" href="${antrisLink}" target="_blank">About Me</a>
               </li>
               <li class="nav-item logoutMobile">
-                <a class="nav-link loginLink" href="${loginLink}">Logout</a>
+                <a class="nav-link LogoutLink" href="${loginLink}">Logout</a>
               </li>
               <li class="nav-item logoutMobile" style="margin: 8px 0px 4px;">
                 <div class="dropdown d-inline">
@@ -68,7 +68,7 @@ class NavigationBar extends HTMLElement {
               </div>
 
               <a href="${antrisLink}" class="mx-2" target="_blank">About Me</a> 
-              <a href="${loginLink}" class="mx-1 loginLink"><b>Logout</b></a>
+              <a href="${loginLink}" class="mx-1 LogoutLink"><b>Logout</b></a>
               
             </span>
           </div>

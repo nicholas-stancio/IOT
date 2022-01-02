@@ -20,9 +20,13 @@ const Dashboard = {
   },
 
   async afterRender() {
-    setInterval(() => {
+    const minuteLoop = setInterval(() => {
       checkToken(); // Loop every minute to check token
     }, 60000);
+
+    $('.LogoutLink').on('click', () => {
+      clearInterval(minuteLoop);
+    });
 
     $('.navBarNodeRed').on('click', () => {
       checkToken();
