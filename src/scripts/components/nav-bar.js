@@ -26,14 +26,14 @@ class NavigationBar extends HTMLElement {
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item" id="logoutMobile">
-                <a class="nav-link" href="${antrisLink}">Tentang Kami</a>
+                <a class="nav-link" href="${antrisLink}">About Me</a>
               </li>
               <li class="nav-item" id="logoutMobile">
-                <a class="nav-link" href="${loginLink}">Keluar</a>
+                <a class="nav-link" href="${loginLink}">Logout</a>
               </li>
             </ul>
             <span class="navbar-text" id="logoutDesktop">
-              <a href="${antrisLink}" class="mx-2">Tentang Kami</a> <a href="${loginLink}" class="mx-1"><b>Keluar</b></a>
+              <a href="${antrisLink}" class="mx-2">About Me</a> <a href="${loginLink}" class="mx-1"><b>Logout</b></a>
             </span>
           </div>
         </div>
