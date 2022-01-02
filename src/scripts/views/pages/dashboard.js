@@ -70,7 +70,15 @@ const Dashboard = {
     });
 
     // -------- Modal Functions ----------
+    $('#fetchApiModalFetch').on('click', async () => {
+      const modalData = {
+        endpoint: $('#fetchApiModalEndpoint').val(),
+        method: $('#fetchApiModalMethod').val(),
+        body: $('#fetchApiModalBody').val(),
+      };
 
+      await api.customFetch(modalData);
+    });
     // -------- End ----------
   },
 };

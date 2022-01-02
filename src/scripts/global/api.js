@@ -78,13 +78,28 @@ function checkToken(token) {
     });
 }
 
-function customFetch({ endpoint, method, body }) {
-  return fetch(`${CONFIG.BASE_URL}${endpoint}`, {
-    method,
-    body: JSON.stringify(body),
+function customFetch(modalData) {
+  if (modalData.method.toUpperCase() === 'GET') {
+    return fetch(`${CONFIG.BASE_URL}${modalData.endpoint}`, {
+      method: 'GET',
+    }).then((response) => response.text())
+      .then((data) => {
+        alert(data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+  console.log(modalData.body);
+  console.log(JSON.stringify(modalData.body));
+  return fetch(`${CONFIG.BASE_URL}${modalData.endpoint}`, {
+    method: modalData.method,
+    body: modalData.body,
     headers: { 'Content-type': 'application/json' },
   }).then((response) => response.text())
-    .then((data) => data)
+    .then((data) => {
+      alert(data);
+    })
     .catch((err) => {
       alert(err);
     });
@@ -95,7 +110,7 @@ const api = {
   signUp: (user) => signUp(user),
   checkToken: (token) => checkToken(token),
   logOut,
-  customFetch: ({ endpoint, method, body }) => customFetch({ endpoint, method, body }),
+  customFetch: (modalData) => customFetch(modalData),
 };
 
 export default api;

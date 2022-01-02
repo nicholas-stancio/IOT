@@ -21,7 +21,7 @@ const fetchApiModal = () => `
                     </div>
                     <div class="form-group mt-3">
                         <label for="fetchApiModalBody">Body</label>
-                        <textarea class="form-control mt-2" id="fetchApiModalBody" rows="3" placeholder="{token: 'tkn91236123982'}"></textarea>
+                        <textarea class="form-control mt-2" id="fetchApiModalBody" rows="3" placeholder='{"city": "palembang"}'></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
