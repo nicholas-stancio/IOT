@@ -9,7 +9,7 @@ const Dashboard = {
     api.checkToken(token);
 
     return `
-    <h1>Welcome</h1>
+    <embed src="http://34.124.248.36:1880/dash/" style="width: 100%; height: 94.5vh;">
     `;
   },
 
