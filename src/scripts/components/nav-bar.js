@@ -64,6 +64,8 @@ class NavigationBar extends HTMLElement {
                   <li><a class="dropdown-item pointer navBarNodeRed">Node Red</a></li>
                   <li><a class="dropdown-item pointer navBarMySql" href="http://34.124.248.36/phpmyadmin/" target="_blank">MY SQL</a></li>
                   <li><a class="dropdown-item pointer navBarDashboard">Dashboard</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item pointer navBarFetchApi" data-bs-toggle="modal" data-bs-target="#fetchApiModal">Fetch API</a></li>
                 </ul>
               </div>
 

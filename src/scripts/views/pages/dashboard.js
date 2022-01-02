@@ -1,4 +1,5 @@
 import api from '../../global/api';
+import fetchApiModal from '../../templates/modal';
 
 function checkToken() {
   // check if token valid
@@ -16,14 +17,18 @@ const Dashboard = {
       <div id="embedDiv">
         <embed src="http://34.124.248.36:1880/ui/" style="width: 100%; height: 93.45vh;">
       </div>
+
+      ${fetchApiModal()}
     `;
   },
 
   async afterRender() {
+    // -------- Check Token Loop ----------
     const minuteLoop = setInterval(() => {
       checkToken(); // Loop every minute to check token
     }, 60000);
 
+    // -------- NavBar Functions ----------
     $('.LogoutLink').on('click', () => {
       clearInterval(minuteLoop);
     });
@@ -63,6 +68,10 @@ const Dashboard = {
       $('#embedDiv').empty();
       $('#embedDiv').html('<embed src="http://34.124.248.36:1880/ui/" style="width: 100%; height: 93.45vh;">');
     });
+
+    // -------- Modal Functions ----------
+
+    // -------- End ----------
   },
 };
 

@@ -1,10 +1,6 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
-/* eslint-disable consistent-return */
-/* eslint-disable no-use-before-define */
-/* eslint-disable new-cap */
-/* eslint-disable require-jsdoc */
 import API_ENDPOINT from './api-endpoint';
+import CONFIG from './config';
 
 function signUp(user) {
   return fetch(API_ENDPOINT.SIGN_UP, {
@@ -22,6 +18,7 @@ function signUp(user) {
       }
     })
     .catch((err) => {
+      alert(err);
     });
 }
 
@@ -42,6 +39,7 @@ function signIn(user) {
       }
     })
     .catch((err) => {
+      alert(err);
     });
 }
 
@@ -57,6 +55,7 @@ function logOut() {
       }
     })
     .catch((err) => {
+      alert(err);
     });
 }
 
@@ -75,6 +74,19 @@ function checkToken(token) {
       return false;
     })
     .catch((err) => {
+      alert(err);
+    });
+}
+
+function customFetch({ endpoint, method, body }) {
+  return fetch(`${CONFIG.BASE_URL}${endpoint}`, {
+    method,
+    body: JSON.stringify(body),
+    headers: { 'Content-type': 'application/json' },
+  }).then((response) => response.text())
+    .then((data) => data)
+    .catch((err) => {
+      alert(err);
     });
 }
 
@@ -83,6 +95,7 @@ const api = {
   signUp: (user) => signUp(user),
   checkToken: (token) => checkToken(token),
   logOut,
+  customFetch: ({ endpoint, method, body }) => customFetch({ endpoint, method, body }),
 };
 
 export default api;
