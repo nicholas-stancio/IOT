@@ -1,5 +1,5 @@
 # IOT - CSE 2019
-Projek IOT by Nicholas Stancio Saka
+Project IOT by Nicholas Stancio Saka
 
 # Instructions (Running locally)
 1. run 'npm install'
