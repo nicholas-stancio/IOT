@@ -10,6 +10,3 @@ Projek IOT by Nicholas Stancio Saka
 
 # Online live server
 http://34.124.248.36/ver_1.2
-
-# Upcoming
-- Node-red Dashboard
