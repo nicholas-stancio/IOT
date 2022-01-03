@@ -156,6 +156,7 @@
         "nl": false,
         "rap": true,
         "rh": 0,
+        "inputs": 0,
         "x": 190,
         "y": 2700,
         "wires": [
@@ -223,41 +224,6 @@
         ]
     },
     {
-        "id": "80c0793ae85af6e1",
-        "type": "inject",
-        "z": "65f999f3a6504d70",
-        "name": "delete data",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 1600,
-        "y": 1580,
-        "wires": [
-            [
-                "dbd565578489258a"
-            ]
-        ]
-    },
-    {
-        "id": "dbd565578489258a",
-        "type": "file",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "filename": "data.csv",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 1840,
-        "y": 1580,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "2bac00d2d14d4dd6",
         "type": "file",
         "z": "65f999f3a6504d70",
@@ -272,161 +238,6 @@
         "wires": [
             [
                 "a7c1439482452d8e"
-            ]
-        ]
-    },
-    {
-        "id": "7d3dfda08dfa0eb2",
-        "type": "inject",
-        "z": "65f999f3a6504d70",
-        "name": "Get Current CSV",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 1620,
-        "y": 1680,
-        "wires": [
-            [
-                "3917e83e231ffa82"
-            ]
-        ]
-    },
-    {
-        "id": "3bf43140b6eb4b27",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2010,
-        "y": 1680,
-        "wires": []
-    },
-    {
-        "id": "3917e83e231ffa82",
-        "type": "file in",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "filename": "data.csv",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1800,
-        "y": 1680,
-        "wires": [
-            [
-                "3bf43140b6eb4b27",
-                "aaff4d61f546378a"
-            ]
-        ]
-    },
-    {
-        "id": "aaff4d61f546378a",
-        "type": "csv",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "mult",
-        "ret": "\\n",
-        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 1990,
-        "y": 1760,
-        "wires": [
-            [
-                "ab4c95a862fc3e19"
-            ]
-        ]
-    },
-    {
-        "id": "ab4c95a862fc3e19",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2170,
-        "y": 1760,
-        "wires": []
-    },
-    {
-        "id": "6f2cdf985723b115",
-        "type": "mqtt in",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "topic": "nico/data",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "d74bb850e7fcc16b",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "x": 1580,
-        "y": 2020,
-        "wires": [
-            [
-                "d1c19c4ab1c82eb0"
-            ]
-        ]
-    },
-    {
-        "id": "ebb22a0dd60ea7a8",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1890,
-        "y": 2020,
-        "wires": []
-    },
-    {
-        "id": "d1c19c4ab1c82eb0",
-        "type": "csv",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "mult",
-        "ret": "\\n",
-        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 1730,
-        "y": 2020,
-        "wires": [
-            [
-                "ebb22a0dd60ea7a8"
             ]
         ]
     },
@@ -468,211 +279,6 @@
         "wires": []
     },
     {
-        "id": "3eacc99004340ac8",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Temp",
-        "tstampField": "tstamp",
-        "dataField": "temp",
-        "disableDiscover": false,
-        "x": 2230,
-        "y": 2000,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d86635f22d3d9ce1",
-        "type": "inject",
-        "z": "65f999f3a6504d70",
-        "name": "Get Graph",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 1600,
-        "y": 1860,
-        "wires": [
-            [
-                "f3f6b18ba172ba50"
-            ]
-        ]
-    },
-    {
-        "id": "f3f6b18ba172ba50",
-        "type": "file in",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "filename": "data.csv",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1760,
-        "y": 1860,
-        "wires": [
-            [
-                "a8883acac6b8d74c"
-            ]
-        ]
-    },
-    {
-        "id": "e08f6bb2387d9c7e",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2090,
-        "y": 1860,
-        "wires": []
-    },
-    {
-        "id": "a8883acac6b8d74c",
-        "type": "csv",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "mult",
-        "ret": "\\n",
-        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 1910,
-        "y": 1860,
-        "wires": [
-            [
-                "e08f6bb2387d9c7e",
-                "fb3c92ad5a317dfc"
-            ]
-        ]
-    },
-    {
-        "id": "fb3c92ad5a317dfc",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "Split data",
-        "func": "var msgList = [];\n\nmsg.payload.forEach(function(element) {\n  msgList.push({payload:element})\n})\n\nreturn [msgList];",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2040,
-        "y": 1940,
-        "wires": [
-            [
-                "3eacc99004340ac8",
-                "0d357bf9cf1d4481",
-                "32c3ce7b2796a778",
-                "d8dbe071924a3ef2",
-                "92b909a506038780",
-                "a68578fb2ef02752",
-                "d8b4c82bfa0ee874"
-            ]
-        ]
-    },
-    {
-        "id": "0d357bf9cf1d4481",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2250,
-        "y": 1940,
-        "wires": []
-    },
-    {
-        "id": "32c3ce7b2796a778",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Pressure",
-        "tstampField": "tstamp",
-        "dataField": "pressure",
-        "disableDiscover": false,
-        "x": 2240,
-        "y": 2060,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d8dbe071924a3ef2",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Humidity",
-        "tstampField": "tstamp",
-        "dataField": "humidity",
-        "disableDiscover": false,
-        "x": 2240,
-        "y": 2120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "92b909a506038780",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Visibility",
-        "tstampField": "tstamp",
-        "dataField": "visibility",
-        "disableDiscover": false,
-        "x": 2240,
-        "y": 2180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a68578fb2ef02752",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Wind Speed",
-        "tstampField": "tstamp",
-        "dataField": "wind_speed",
-        "disableDiscover": false,
-        "x": 2250,
-        "y": 2240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d8b4c82bfa0ee874",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Clouds",
-        "tstampField": "tstamp",
-        "dataField": "clouds",
-        "disableDiscover": false,
-        "x": 2240,
-        "y": 2300,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f6c608d17a29b4e3",
         "type": "http response",
         "z": "65f999f3a6504d70",
@@ -682,20 +288,6 @@
         "x": 1030,
         "y": 2480,
         "wires": []
-    },
-    {
-        "id": "d8ef4d04c7e5e10c",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 770,
-        "y": 1720,
-        "wires": [
-            [
-                "869ea4ac89540aba"
-            ]
-        ]
     },
     {
         "id": "bad6bd7132856065",
@@ -727,6 +319,7 @@
         "nl": false,
         "rap": true,
         "rh": 0,
+        "inputs": 0,
         "x": 200,
         "y": 2880,
         "wires": [
@@ -752,7 +345,7 @@
         "name": "City",
         "info": "",
         "x": 170,
-        "y": 1660,
+        "y": 1760,
         "wires": []
     },
     {
@@ -765,7 +358,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 210,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "8d6d902be3bb02f0"
@@ -786,7 +379,7 @@
         "proxy": "",
         "authType": "",
         "x": 430,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "88a2f29175d3e3ba",
@@ -806,7 +399,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "d8ef4d04c7e5e10c"
@@ -825,7 +418,7 @@
         "finalize": "",
         "libs": [],
         "x": 990,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "e5e9713fc0caea5d"
@@ -846,10 +439,23 @@
             "ac476b5cab0ff6c6",
             "b93355993be89984",
             "dfcad5cb8e3fb424",
-            "6cd43d88e80f8e38"
+            "6cd43d88e80f8e38",
+            "51bed007c186bbac",
+            "6e103c764fd0d732",
+            "db6850fdd121844a",
+            "e2721373c89f1494",
+            "02d1e81fb7f1d043",
+            "95b809482eef745c",
+            "70dae20c8fc1221a",
+            "efa06bede98cafcb",
+            "33f4b342dd361363",
+            "1e589e43495e8a8b",
+            "2d70e472ce6cda2b",
+            "047a3dcc8adca372",
+            "ae2fb18b50464df1"
         ],
         "uncaught": false,
-        "x": 170,
+        "x": 180,
         "y": 180,
         "wires": [
             [
@@ -865,7 +471,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1210,
-        "y": 1760,
+        "y": 1860,
         "wires": []
     },
     {
@@ -899,7 +505,7 @@
         "finalize": "",
         "libs": [],
         "x": 1020,
-        "y": 1800,
+        "y": 1900,
         "wires": [
             [
                 "e5e9713fc0caea5d"
@@ -918,7 +524,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 1800,
+        "y": 1900,
         "wires": [
             [
                 "476b568916c92cf8"
@@ -981,20 +587,6 @@
         ]
     },
     {
-        "id": "d0701058902976d8",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 570,
-        "y": 2020,
-        "wires": [
-            [
-                "ce0f211e0815feb6"
-            ]
-        ]
-    },
-    {
         "id": "ce0f211e0815feb6",
         "type": "http response",
         "z": "65f999f3a6504d70",
@@ -1053,20 +645,6 @@
         "wires": []
     },
     {
-        "id": "865ed83c48ab8420",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 590,
-        "y": 2140,
-        "wires": [
-            [
-                "74e4db68fb97f75d"
-            ]
-        ]
-    },
-    {
         "id": "74e4db68fb97f75d",
         "type": "function",
         "z": "65f999f3a6504d70",
@@ -1105,20 +683,6 @@
         "wires": [
             [
                 "4d708110f91e9a28"
-            ]
-        ]
-    },
-    {
-        "id": "10307ae8c5f371b5",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 690,
-        "y": 2880,
-        "wires": [
-            [
-                "705f8bd5e5c12b99"
             ]
         ]
     },
@@ -1209,20 +773,6 @@
         ]
     },
     {
-        "id": "6c08ac9f06eb57b2",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 570,
-        "y": 3000,
-        "wires": [
-            [
-                "e1cc039c5b1c38d2"
-            ]
-        ]
-    },
-    {
         "id": "e1cc039c5b1c38d2",
         "type": "http response",
         "z": "65f999f3a6504d70",
@@ -1279,20 +829,6 @@
         "x": 990,
         "y": 3120,
         "wires": []
-    },
-    {
-        "id": "ac476b5cab0ff6c6",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 610,
-        "y": 3120,
-        "wires": [
-            [
-                "64b6f48a3d956954"
-            ]
-        ]
     },
     {
         "id": "64b6f48a3d956954",
@@ -1392,20 +928,6 @@
         ]
     },
     {
-        "id": "b93355993be89984",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 670,
-        "y": 3360,
-        "wires": [
-            [
-                "07cb2b0513c12fee"
-            ]
-        ]
-    },
-    {
         "id": "045aea5359531abb",
         "type": "function",
         "z": "65f999f3a6504d70",
@@ -1453,20 +975,6 @@
         "x": 1210,
         "y": 3440,
         "wires": []
-    },
-    {
-        "id": "dfcad5cb8e3fb424",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 690,
-        "y": 3560,
-        "wires": [
-            [
-                "6a7ab2500d686b44"
-            ]
-        ]
     },
     {
         "id": "1452e4a18b348fa1",
@@ -1717,20 +1225,6 @@
         ]
     },
     {
-        "id": "6cd43d88e80f8e38",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 470,
-        "y": 3660,
-        "wires": [
-            [
-                "f4723f460c4d2809"
-            ]
-        ]
-    },
-    {
         "id": "c3b50eb7a8668de5",
         "type": "join",
         "z": "65f999f3a6504d70",
@@ -1787,155 +1281,6 @@
                 "defca13c8668be09"
             ]
         ]
-    },
-    {
-        "id": "82fc2afa63490a2f",
-        "type": "mqtt in",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "topic": "nico/single-data",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "d74bb850e7fcc16b",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "x": 1600,
-        "y": 2520,
-        "wires": [
-            [
-                "359189000f8b73a9"
-            ]
-        ]
-    },
-    {
-        "id": "359189000f8b73a9",
-        "type": "csv",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 1770,
-        "y": 2520,
-        "wires": [
-            [
-                "7a3d63bb605894fb",
-                "9fcb48d046180df3",
-                "9184369b22ae4bac",
-                "a7d51db5a2d4703f",
-                "e62fe61f080a0b79",
-                "be7ea44957dfe910",
-                "4f96a5022d0ff92c"
-            ]
-        ]
-    },
-    {
-        "id": "7a3d63bb605894fb",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Temp",
-        "tstampField": "time_stamp",
-        "dataField": "temp",
-        "disableDiscover": false,
-        "x": 1950,
-        "y": 2520,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9fcb48d046180df3",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Pressure",
-        "tstampField": "time_stamp",
-        "dataField": "pressure",
-        "disableDiscover": false,
-        "x": 1960,
-        "y": 2580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9184369b22ae4bac",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Humidity",
-        "tstampField": "time_stamp",
-        "dataField": "humidity",
-        "disableDiscover": false,
-        "x": 1960,
-        "y": 2640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a7d51db5a2d4703f",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Visibility",
-        "tstampField": "time_stamp",
-        "dataField": "visibility",
-        "disableDiscover": false,
-        "x": 1960,
-        "y": 2700,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e62fe61f080a0b79",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Wind Speed",
-        "tstampField": "time_stamp",
-        "dataField": "wind_speed",
-        "disableDiscover": false,
-        "x": 1970,
-        "y": 2760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "be7ea44957dfe910",
-        "type": "iot-datasource",
-        "z": "65f999f3a6504d70",
-        "name": "Clouds",
-        "tstampField": "time_stamp",
-        "dataField": "clouds",
-        "disableDiscover": false,
-        "x": 1960,
-        "y": 2820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4f96a5022d0ff92c",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1970,
-        "y": 2460,
-        "wires": []
     },
     {
         "id": "27ad5f6ff3086bee",
@@ -2026,8 +1371,7 @@
         "y": 360,
         "wires": [
             [
-                "cc1a5521b1c074ce",
-                "579a279e01fcc60f"
+                "cc1a5521b1c074ce"
             ]
         ]
     },
@@ -2077,20 +1421,6 @@
         "wires": [
             [
                 "70dae20c8fc1221a"
-            ]
-        ]
-    },
-    {
-        "id": "70dae20c8fc1221a",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 710,
-        "y": 360,
-        "wires": [
-            [
-                "89a2f8f52daf6933"
             ]
         ]
     },
@@ -2204,20 +1534,6 @@
         ]
     },
     {
-        "id": "efa06bede98cafcb",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 1510,
-        "y": 400,
-        "wires": [
-            [
-                "a3a79fe07570cebb"
-            ]
-        ]
-    },
-    {
         "id": "6aef2a795c0d3d87",
         "type": "http response",
         "z": "65f999f3a6504d70",
@@ -2298,20 +1614,6 @@
         "wires": [
             [
                 "95b809482eef745c"
-            ]
-        ]
-    },
-    {
-        "id": "95b809482eef745c",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 470,
-        "y": 520,
-        "wires": [
-            [
-                "c5479309ec76bf97"
             ]
         ]
     },
@@ -2399,18 +1701,6 @@
         ]
     },
     {
-        "id": "ae2fb18b50464df1",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 1290,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "1e8d7db6d113b579",
         "type": "comment",
         "z": "65f999f3a6504d70",
@@ -2433,136 +1723,26 @@
         "y": 700,
         "wires": [
             [
-                "e50e5c252e4d3026"
-            ]
-        ]
-    },
-    {
-        "id": "59a626d4401af831",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "check data validity",
-        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'No user exist with this id and password';\n    return msg;\n}\nelse {\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 650,
-        "y": 700,
-        "wires": [
-            [
-                "3e9bdd8363c3dcbc"
-            ]
-        ]
-    },
-    {
-        "id": "e50e5c252e4d3026",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "Query",
-        "func": "msg.topic=\"SELECT * FROM t_user WHERE id = :id AND password = :password\";\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 700,
-        "wires": [
-            [
-                "c01483d2b7bfc580"
-            ]
-        ]
-    },
-    {
-        "id": "c01483d2b7bfc580",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 470,
-        "y": 700,
-        "wires": [
-            [
-                "59a626d4401af831"
-            ]
-        ]
-    },
-    {
-        "id": "3e9bdd8363c3dcbc",
-        "type": "switch",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "error",
-                "vt": "str"
-            },
-            {
-                "t": "neq",
-                "v": "error",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 810,
-        "y": 700,
-        "wires": [
-            [
-                "d31475e262271eb7"
-            ],
-            [
                 "76bff4a813172193"
             ]
         ]
-    },
-    {
-        "id": "d31475e262271eb7",
-        "type": "http response",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 950,
-        "y": 680,
-        "wires": []
     },
     {
         "id": "a5deecd38bcbb04b",
         "type": "function",
         "z": "65f999f3a6504d70",
         "name": "Query",
-        "func": "msg.topic=\"UPDATE `t_user_token` SET is_active = 0 WHERE token = :token AND id = :id;\"\nreturn msg;\n",
+        "func": "msg.topic=\"UPDATE `t_user_token` SET is_active = 0 WHERE token = :token;\"\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1890,
-        "y": 760,
+        "x": 1270,
+        "y": 720,
         "wires": [
             [
                 "33f4b342dd361363"
-            ]
-        ]
-    },
-    {
-        "id": "33f4b342dd361363",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 2030,
-        "y": 760,
-        "wires": [
-            [
-                "1a537dade641c3b9"
             ]
         ]
     },
@@ -2571,14 +1751,14 @@
         "type": "function",
         "z": "65f999f3a6504d70",
         "name": "prepare data",
-        "func": "tempId = msg.payload[0].id;\ntempToken = msg.req.body.token;\nmsg.payload = {};\n\nmsg.payload.id = tempId;\nmsg.payload.token = msg.req.body.token;\n\nreturn msg;",
+        "func": "tempToken = msg.req.body.token;\nmsg.payload = {};\n\nmsg.payload.token = msg.req.body.token;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 740,
+        "x": 350,
+        "y": 700,
         "wires": [
             [
                 "b4ec00212cc8ac83"
@@ -2604,8 +1784,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2200,
-        "y": 760,
+        "x": 1580,
+        "y": 720,
         "wires": [
             [
                 "b2bc17343de08706"
@@ -2619,8 +1799,8 @@
         "name": "api logout",
         "statusCode": "",
         "headers": {},
-        "x": 2500,
-        "y": 760,
+        "x": 1880,
+        "y": 720,
         "wires": []
     },
     {
@@ -2628,14 +1808,14 @@
         "type": "function",
         "z": "65f999f3a6504d70",
         "name": "check data validity",
-        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.req.body.id === msg.payload[0].id){\n        return msg;\n    }\n    else{\n        msg.topic = 'error'\n        msg.payload = \"This token doesn't match your credentials\";\n        return msg;\n    }\n}\n",
+        "func": "if (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.req.body.token === msg.payload[0].token){\n        msg.req.body.id = msg.payload[0].id;\n        return msg;\n    }\n    else{\n        msg.topic = 'error'\n        msg.payload = \"This token is not valid\";\n        return msg;\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1430,
-        "y": 740,
+        "x": 810,
+        "y": 700,
         "wires": [
             [
                 "af6e4a1eaf33c3c2"
@@ -2653,25 +1833,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1110,
-        "y": 740,
+        "x": 490,
+        "y": 700,
         "wires": [
             [
                 "02d1e81fb7f1d043"
-            ]
-        ]
-    },
-    {
-        "id": "02d1e81fb7f1d043",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 1250,
-        "y": 740,
-        "wires": [
-            [
-                "bf97b5e87e7f97f7"
             ]
         ]
     },
@@ -2697,8 +1863,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1590,
-        "y": 740,
+        "x": 970,
+        "y": 700,
         "wires": [
             [
                 "3b811544e0c5dd55"
@@ -2715,8 +1881,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1730,
-        "y": 720,
+        "x": 1110,
+        "y": 680,
         "wires": []
     },
     {
@@ -2724,186 +1890,19 @@
         "type": "function",
         "z": "65f999f3a6504d70",
         "name": "prepare data",
-        "func": "tempId = msg.payload[0].id;\ntempToken = msg.req.body.token;\nmsg.payload = {};\n\nmsg.payload.id = tempId;\nmsg.payload.token = msg.req.body.token;\n\nreturn msg;",
+        "func": "tempToken = msg.req.body.token;\nmsg.payload = {};\n\nmsg.payload.token = msg.req.body.token;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1750,
-        "y": 760,
+        "x": 1130,
+        "y": 720,
         "wires": [
             [
                 "a5deecd38bcbb04b"
             ]
         ]
-    },
-    {
-        "id": "cf2a3e740b6b2330",
-        "type": "comment",
-        "z": "65f999f3a6504d70",
-        "name": "API - get weather",
-        "info": "",
-        "x": 200,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "cc6f659ca32c7283",
-        "type": "http in",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "url": "/weather/",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 190,
-        "y": 900,
-        "wires": [
-            [
-                "c7aa5d679253784b"
-            ]
-        ]
-    },
-    {
-        "id": "6362410145edbe16",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "Query",
-        "func": "msg.topic=\"SELECT * FROM `t_weather_realtime`\";\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 950,
-        "y": 920,
-        "wires": [
-            [
-                "2195a5c1bb503901"
-            ]
-        ]
-    },
-    {
-        "id": "2195a5c1bb503901",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 1090,
-        "y": 920,
-        "wires": [
-            [
-                "ed692b57e4e6fe5f"
-            ]
-        ]
-    },
-    {
-        "id": "705b5fe35a12a28c",
-        "type": "http response",
-        "z": "65f999f3a6504d70",
-        "name": "api weather",
-        "statusCode": "",
-        "headers": {},
-        "x": 1390,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "7f2efc78d87757cb",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "check token validity",
-        "func": "msg.req.body.id = msg.payload[0].id\nmsg.req.body.token = msg.payload[0].token;\n\nif (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.payload[0].is_active === 1){\n        return msg;\n    }\n    else {\n        msg.topic = 'error'\n        msg.payload = 'This token is not valid';\n        return msg;\n    }\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 650,
-        "y": 900,
-        "wires": [
-            [
-                "2563a3f586df00e0"
-            ]
-        ]
-    },
-    {
-        "id": "c7aa5d679253784b",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "Query",
-        "func": "msg.topic=\"SELECT * FROM t_user_token WHERE token = :token\";\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 900,
-        "wires": [
-            [
-                "1653c67e59bfbaf2"
-            ]
-        ]
-    },
-    {
-        "id": "1653c67e59bfbaf2",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 470,
-        "y": 900,
-        "wires": [
-            [
-                "7f2efc78d87757cb"
-            ]
-        ]
-    },
-    {
-        "id": "2563a3f586df00e0",
-        "type": "switch",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "error",
-                "vt": "str"
-            },
-            {
-                "t": "neq",
-                "v": "error",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 810,
-        "y": 900,
-        "wires": [
-            [
-                "fe053411f1f39640"
-            ],
-            [
-                "6362410145edbe16"
-            ]
-        ]
-    },
-    {
-        "id": "fe053411f1f39640",
-        "type": "http response",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 950,
-        "y": 880,
-        "wires": []
     },
     {
         "id": "d43f56385f82c2d1",
@@ -2912,7 +1911,7 @@
         "name": "API - save log",
         "info": "",
         "x": 190,
-        "y": 1040,
+        "y": 820,
         "wires": []
     },
     {
@@ -2923,12 +1922,13 @@
         "scope": [
             "6aef2a795c0d3d87",
             "3211c5505dc2eb1d",
-            "705b5fe35a12a28c",
-            "9107d26c5c3de1c0"
+            "9107d26c5c3de1c0",
+            "b0058f10c6489ef3",
+            "49f1dba81f03e8ef"
         ],
         "uncaught": false,
         "x": 190,
-        "y": 1100,
+        "y": 880,
         "wires": [
             [
                 "85f129f3d93c06dd"
@@ -2966,7 +1966,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 1100,
+        "y": 880,
         "wires": [
             [
                 "b5f53ccaa3006c05"
@@ -2984,8 +1984,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2360,
-        "y": 760,
+        "x": 1740,
+        "y": 720,
         "wires": [
             [
                 "3211c5505dc2eb1d"
@@ -3042,41 +2042,10 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 1100,
+        "y": 880,
         "wires": [
             [
                 "e2721373c89f1494"
-            ]
-        ]
-    },
-    {
-        "id": "e2721373c89f1494",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 650,
-        "y": 1100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ed692b57e4e6fe5f",
-        "type": "function",
-        "z": "65f999f3a6504d70",
-        "name": "set topic",
-        "func": "msg.topic = {\"description\":\"Get Weather\",\"id\":msg.req.body.id,\"token\":msg.req.body.token,\"time\":new Date()}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 920,
-        "wires": [
-            [
-                "705b5fe35a12a28c"
             ]
         ]
     },
@@ -3087,7 +2056,7 @@
         "name": "API - get log",
         "info": "",
         "x": 190,
-        "y": 1240,
+        "y": 1000,
         "wires": []
     },
     {
@@ -3100,7 +2069,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 1300,
+        "y": 1060,
         "wires": [
             [
                 "a4d3e2903f9bae79"
@@ -3119,24 +2088,10 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 1300,
+        "y": 1060,
         "wires": [
             [
                 "db6850fdd121844a"
-            ]
-        ]
-    },
-    {
-        "id": "db6850fdd121844a",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 490,
-        "y": 1300,
-        "wires": [
-            [
-                "4da2a4e4c57e96f8"
             ]
         ]
     },
@@ -3148,23 +2103,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "579a279e01fcc60f",
-        "type": "debug",
-        "z": "65f999f3a6504d70",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 300,
+        "y": 1060,
         "wires": []
     },
     {
@@ -3174,7 +2113,7 @@
         "name": "API - check token",
         "info": "",
         "x": 200,
-        "y": 1440,
+        "y": 1200,
         "wires": []
     },
     {
@@ -3187,7 +2126,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 210,
-        "y": 1500,
+        "y": 1260,
         "wires": [
             [
                 "77981a74a5d4590c"
@@ -3206,7 +2145,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 1500,
+        "y": 1260,
         "wires": [
             [
                 "df49d52690912ad0"
@@ -3225,24 +2164,10 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 1500,
+        "y": 1260,
         "wires": [
             [
                 "6e103c764fd0d732"
-            ]
-        ]
-    },
-    {
-        "id": "6e103c764fd0d732",
-        "type": "mysql",
-        "z": "65f999f3a6504d70",
-        "mydb": "87c580715c90182b",
-        "name": "Weather DB",
-        "x": 510,
-        "y": 1500,
-        "wires": [
-            [
-                "34a498a2992d3d52"
             ]
         ]
     },
@@ -3269,7 +2194,7 @@
         "repair": false,
         "outputs": 2,
         "x": 850,
-        "y": 1500,
+        "y": 1260,
         "wires": [
             [
                 "d3ae75789d2ff364"
@@ -3287,7 +2212,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1150,
-        "y": 1480,
+        "y": 1240,
         "wires": []
     },
     {
@@ -3310,12 +2235,1429 @@
         "to": "",
         "reg": false,
         "x": 1000,
-        "y": 1520,
+        "y": 1280,
         "wires": [
             [
                 "d3ae75789d2ff364"
             ]
         ]
+    },
+    {
+        "id": "d8ef4d04c7e5e10c",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 770,
+        "y": 1820,
+        "wires": [
+            [
+                "869ea4ac89540aba"
+            ]
+        ]
+    },
+    {
+        "id": "d0701058902976d8",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 570,
+        "y": 2020,
+        "wires": [
+            [
+                "ce0f211e0815feb6"
+            ]
+        ]
+    },
+    {
+        "id": "865ed83c48ab8420",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 590,
+        "y": 2140,
+        "wires": [
+            [
+                "74e4db68fb97f75d"
+            ]
+        ]
+    },
+    {
+        "id": "10307ae8c5f371b5",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 690,
+        "y": 2880,
+        "wires": [
+            [
+                "705f8bd5e5c12b99"
+            ]
+        ]
+    },
+    {
+        "id": "6c08ac9f06eb57b2",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 570,
+        "y": 3000,
+        "wires": [
+            [
+                "e1cc039c5b1c38d2"
+            ]
+        ]
+    },
+    {
+        "id": "ac476b5cab0ff6c6",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 610,
+        "y": 3120,
+        "wires": [
+            [
+                "64b6f48a3d956954"
+            ]
+        ]
+    },
+    {
+        "id": "b93355993be89984",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 670,
+        "y": 3360,
+        "wires": [
+            [
+                "07cb2b0513c12fee"
+            ]
+        ]
+    },
+    {
+        "id": "dfcad5cb8e3fb424",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 690,
+        "y": 3560,
+        "wires": [
+            [
+                "6a7ab2500d686b44"
+            ]
+        ]
+    },
+    {
+        "id": "6cd43d88e80f8e38",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 470,
+        "y": 3660,
+        "wires": [
+            [
+                "f4723f460c4d2809"
+            ]
+        ]
+    },
+    {
+        "id": "70dae20c8fc1221a",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [
+                "89a2f8f52daf6933"
+            ]
+        ]
+    },
+    {
+        "id": "efa06bede98cafcb",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1510,
+        "y": 400,
+        "wires": [
+            [
+                "a3a79fe07570cebb"
+            ]
+        ]
+    },
+    {
+        "id": "95b809482eef745c",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "c5479309ec76bf97"
+            ]
+        ]
+    },
+    {
+        "id": "ae2fb18b50464df1",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1290,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "33f4b342dd361363",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 1410,
+        "y": 720,
+        "wires": [
+            [
+                "1a537dade641c3b9"
+            ]
+        ]
+    },
+    {
+        "id": "02d1e81fb7f1d043",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 630,
+        "y": 700,
+        "wires": [
+            [
+                "bf97b5e87e7f97f7"
+            ]
+        ]
+    },
+    {
+        "id": "e2721373c89f1494",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 650,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db6850fdd121844a",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 490,
+        "y": 1060,
+        "wires": [
+            [
+                "4da2a4e4c57e96f8"
+            ]
+        ]
+    },
+    {
+        "id": "6e103c764fd0d732",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 510,
+        "y": 1260,
+        "wires": [
+            [
+                "34a498a2992d3d52"
+            ]
+        ]
+    },
+    {
+        "id": "12735252a7fcde05",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "Dashboard - Real Time",
+        "info": "",
+        "x": 1780,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "2db593f2a385c0a6",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - get all real time weather",
+        "info": "",
+        "x": 1800,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "d851e899c40d37b9",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/api/real-time/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1770,
+        "y": 1400,
+        "wires": [
+            [
+                "9d08548b2a723948"
+            ]
+        ]
+    },
+    {
+        "id": "1ed4c20291195626",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM `t_weather_realtime`\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2550,
+        "y": 1420,
+        "wires": [
+            [
+                "2d70e472ce6cda2b"
+            ]
+        ]
+    },
+    {
+        "id": "b0058f10c6489ef3",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "api weather",
+        "statusCode": "",
+        "headers": {},
+        "x": 2990,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "ced1151d938deffa",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check token validity",
+        "func": "msg.req.body.id = msg.payload[0].id\nmsg.req.body.token = msg.payload[0].token;\n\nif (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.payload[0].is_active === 1){\n        return msg;\n    }\n    else {\n        msg.topic = 'error'\n        msg.payload = 'This token is not valid';\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2250,
+        "y": 1400,
+        "wires": [
+            [
+                "fba734ae90ae78f0"
+            ]
+        ]
+    },
+    {
+        "id": "9d08548b2a723948",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.topic=\"SELECT * FROM t_user_token WHERE token = :token\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1930,
+        "y": 1400,
+        "wires": [
+            [
+                "51bed007c186bbac"
+            ]
+        ]
+    },
+    {
+        "id": "fba734ae90ae78f0",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2410,
+        "y": 1400,
+        "wires": [
+            [
+                "e00cfecc03d0fb33"
+            ],
+            [
+                "1ed4c20291195626"
+            ]
+        ]
+    },
+    {
+        "id": "e00cfecc03d0fb33",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2550,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "6f7619e1fdab387e",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "set topic",
+        "func": "msg.topic = {\"description\":\"Get All Real Time\",\"id\":msg.req.body.id,\"token\":msg.req.body.token,\"time\":new Date()}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2840,
+        "y": 1420,
+        "wires": [
+            [
+                "b0058f10c6489ef3"
+            ]
+        ]
+    },
+    {
+        "id": "2d70e472ce6cda2b",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 2690,
+        "y": 1420,
+        "wires": [
+            [
+                "6f7619e1fdab387e"
+            ]
+        ]
+    },
+    {
+        "id": "51bed007c186bbac",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 2070,
+        "y": 1400,
+        "wires": [
+            [
+                "ced1151d938deffa"
+            ]
+        ]
+    },
+    {
+        "id": "a3bc5fc59da27dac",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "API - get specific real time weather",
+        "info": "",
+        "x": 1820,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "571fdd89773a4b45",
+        "type": "http in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "url": "/api/real-time/specific/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1790,
+        "y": 1560,
+        "wires": [
+            [
+                "972a0c59c3bc078d"
+            ]
+        ]
+    },
+    {
+        "id": "c4322b476c9be1bb",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "check token validity",
+        "func": "msg.req.body.id = msg.payload[0].id\nmsg.req.body.token = msg.payload[0].token;\n\nif (msg.payload.length === 0) {\n    msg.topic = 'error'\n    msg.payload = 'This token is not valid';\n    return msg;\n}\nelse {\n    if (msg.payload[0].is_active === 1){\n        return msg;\n    }\n    else {\n        msg.topic = 'error'\n        msg.payload = 'This token is not valid';\n        return msg;\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2290,
+        "y": 1560,
+        "wires": [
+            [
+                "f3f0caef0ed6425e"
+            ]
+        ]
+    },
+    {
+        "id": "972a0c59c3bc078d",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.req.param.City = msg.payload.City;\nmsg.req.param.Start = msg.payload.Start;\nmsg.req.param.End = msg.payload.End;\n\nmsg.topic=\"SELECT * FROM t_user_token WHERE token = :token\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1970,
+        "y": 1560,
+        "wires": [
+            [
+                "1e589e43495e8a8b"
+            ]
+        ]
+    },
+    {
+        "id": "f3f0caef0ed6425e",
+        "type": "switch",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2450,
+        "y": 1560,
+        "wires": [
+            [
+                "e770a51ad46ad8e1"
+            ],
+            [
+                "d75b535794a963a2"
+            ]
+        ]
+    },
+    {
+        "id": "e770a51ad46ad8e1",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2590,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "1e589e43495e8a8b",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 2110,
+        "y": 1560,
+        "wires": [
+            [
+                "c4322b476c9be1bb"
+            ]
+        ]
+    },
+    {
+        "id": "d75b535794a963a2",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Query",
+        "func": "msg.payload = {};\nmsg.payload.City = msg.req.param.City;\nmsg.payload.Start = msg.req.param.Start;\nmsg.payload.End = msg.req.param.End;\n\nmsg.topic=\"SELECT * FROM t_weather_realtime WHERE location = :City AND time_stamp >= :Start AND time_stamp <= :End\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2590,
+        "y": 1580,
+        "wires": [
+            [
+                "047a3dcc8adca372"
+            ]
+        ]
+    },
+    {
+        "id": "e063a0052a8785bf",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Check if data exists",
+        "func": "if (msg.payload.length == 0){\n    msg.payload = 'No Data'\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2910,
+        "y": 1580,
+        "wires": [
+            [
+                "a7d74320d96332af",
+                "638f7bc6e6a5353a"
+            ]
+        ]
+    },
+    {
+        "id": "047a3dcc8adca372",
+        "type": "mysql",
+        "z": "65f999f3a6504d70",
+        "mydb": "87c580715c90182b",
+        "name": "Weather DB",
+        "x": 2730,
+        "y": 1580,
+        "wires": [
+            [
+                "e063a0052a8785bf"
+            ]
+        ]
+    },
+    {
+        "id": "49f1dba81f03e8ef",
+        "type": "http response",
+        "z": "65f999f3a6504d70",
+        "name": "api specific real time",
+        "statusCode": "",
+        "headers": {},
+        "x": 3260,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "a7d74320d96332af",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "set topic",
+        "func": "msg.topic = {\"description\":\"Get Specific Real Time\",\"id\":msg.req.body.id,\"token\":msg.req.body.token,\"time\":new Date()}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3080,
+        "y": 1580,
+        "wires": [
+            [
+                "49f1dba81f03e8ef"
+            ]
+        ]
+    },
+    {
+        "id": "24aa194769ba3736",
+        "type": "mqtt in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/single-data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d74bb850e7fcc16b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1760,
+        "y": 1720,
+        "wires": [
+            [
+                "ef43f5f3f92c60f8"
+            ]
+        ]
+    },
+    {
+        "id": "ef43f5f3f92c60f8",
+        "type": "csv",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "id,time, time_stamp,location,weather_main_1,weather_desc_1,weather_main_2,weather_desc_2,temp,pressure,humidity,visibility,wind_speed,clouds",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1910,
+        "y": 1720,
+        "wires": [
+            [
+                "1b14d89a3c6b5379",
+                "52092aba2cb77590",
+                "cd789dbe9a367ea4",
+                "1573237d82a10333",
+                "9df329b7e5608000",
+                "9fb654f0454d8ce0",
+                "5c951532ca18092b",
+                "44be1cb45721f1d5",
+                "7bbe34b429a19fb6",
+                "47a87f85037a92c3",
+                "f7a482a31f0e669d"
+            ]
+        ]
+    },
+    {
+        "id": "1b14d89a3c6b5379",
+        "type": "ui_gauge",
+        "z": "65f999f3a6504d70",
+        "name": "Temperature",
+        "group": "29ba251a68665f67",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "K",
+        "format": "{{msg.payload.temp}}",
+        "min": "270",
+        "max": "370",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 2110,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "52092aba2cb77590",
+        "type": "ui_gauge",
+        "z": "65f999f3a6504d70",
+        "name": "Pressure",
+        "group": "29ba251a68665f67",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Pressure",
+        "label": "Pa",
+        "format": "{{msg.payload.pressure}}",
+        "min": "900",
+        "max": "1100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 2100,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "cd789dbe9a367ea4",
+        "type": "ui_gauge",
+        "z": "65f999f3a6504d70",
+        "name": "Humidity",
+        "group": "29ba251a68665f67",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "g.kg-1",
+        "format": "{{msg.payload.humidity}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 2100,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "1573237d82a10333",
+        "type": "ui_gauge",
+        "z": "65f999f3a6504d70",
+        "name": "Visibility",
+        "group": "29ba251a68665f67",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Visibility",
+        "label": "cm",
+        "format": "{{msg.payload.visibility}}",
+        "min": "1000",
+        "max": "15000",
+        "colors": [
+            "#b30000",
+            "#e6e600",
+            "#59cb3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 2100,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "9df329b7e5608000",
+        "type": "ui_gauge",
+        "z": "65f999f3a6504d70",
+        "name": "Wind Speed",
+        "group": "29ba251a68665f67",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Wind Speed",
+        "label": "Knot",
+        "format": "{{msg.payload.wind_speed}}",
+        "min": "0",
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 2110,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "9fb654f0454d8ce0",
+        "type": "ui_gauge",
+        "z": "65f999f3a6504d70",
+        "name": "Cloud",
+        "group": "29ba251a68665f67",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Cloud",
+        "label": "",
+        "format": "{{msg.payload.clouds}}",
+        "min": "0",
+        "max": "150",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 2090,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "5c951532ca18092b",
+        "type": "ui_text",
+        "z": "65f999f3a6504d70",
+        "group": "29ba251a68665f67",
+        "order": 6,
+        "width": "7",
+        "height": "1",
+        "name": "",
+        "label": "Location: ",
+        "format": "{{msg.payload.location}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 2100,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "44be1cb45721f1d5",
+        "type": "ui_text",
+        "z": "65f999f3a6504d70",
+        "group": "29ba251a68665f67",
+        "order": 6,
+        "width": "5",
+        "height": "1",
+        "name": "",
+        "label": "Weather: ",
+        "format": "{{msg.payload.weather_main_1}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 2100,
+        "y": 2040,
+        "wires": []
+    },
+    {
+        "id": "7bbe34b429a19fb6",
+        "type": "ui_text",
+        "z": "65f999f3a6504d70",
+        "group": "29ba251a68665f67",
+        "order": 6,
+        "width": "7",
+        "height": "1",
+        "name": "",
+        "label": "Time: ",
+        "format": "{{msg.payload.time}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 2090,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "47a87f85037a92c3",
+        "type": "ui_text",
+        "z": "65f999f3a6504d70",
+        "group": "29ba251a68665f67",
+        "order": 6,
+        "width": "5",
+        "height": "1",
+        "name": "",
+        "label": "Description: ",
+        "format": "{{msg.payload.weather_desc_1}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 2110,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "f7a482a31f0e669d",
+        "type": "ui_text",
+        "z": "65f999f3a6504d70",
+        "group": "29ba251a68665f67",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "Empty Space",
+        "label": "",
+        "format": "{{}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2110,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "f705d21a653a9ab7",
+        "type": "comment",
+        "z": "65f999f3a6504d70",
+        "name": "Dashboard - Historical Time",
+        "info": "",
+        "x": 1800,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "638f7bc6e6a5353a",
+        "type": "mqtt out",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/historical-data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d74bb850e7fcc16b",
+        "x": 3110,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "25f2084412c9d76a",
+        "type": "mqtt in",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "topic": "nico/historical-data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d74bb850e7fcc16b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1770,
+        "y": 2340,
+        "wires": [
+            [
+                "73eee2ab2f9863cd"
+            ]
+        ]
+    },
+    {
+        "id": "73eee2ab2f9863cd",
+        "type": "json",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1930,
+        "y": 2340,
+        "wires": [
+            [
+                "aa9908689e90e953",
+                "9727ee3f1fbb2c39",
+                "6fede57dc2d5a5f4",
+                "25881d23f26246cb",
+                "47d61ab96987663d",
+                "89028fd2690e4b05",
+                "256d3ea45a815c8f"
+            ]
+        ]
+    },
+    {
+        "id": "aa9908689e90e953",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Temperature",
+        "func": "const dataArray = [];\n\nmsg.payload.forEach((data) => {\n\tdataArray.push({\"x\": data.time_stamp * 1000, \n\t                \"y\": data.temp})\n});\n\nmsg.payload = [{\n\"series\": [\"Temperature\"],\n\"data\": [\n    dataArray\n],\n\"labels\": [\"Temperature\"]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 2340,
+        "wires": [
+            [
+                "51d1d9ca8335bb88"
+            ]
+        ]
+    },
+    {
+        "id": "51d1d9ca8335bb88",
+        "type": "ui_chart",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "group": "1782775dd2324edf",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2290,
+        "y": 2340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9727ee3f1fbb2c39",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Pressure",
+        "func": "const dataArray = [];\n\nmsg.payload.forEach((data) => {\n\tdataArray.push({\"x\": data.time_stamp * 1000, \n\t                \"y\": data.pressure})\n});\n\nmsg.payload = [{\n\"series\": [\"Pressure\"],\n\"data\": [\n    dataArray\n],\n\"labels\": [\"Pressure\"]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2380,
+        "wires": [
+            [
+                "f7fdbc07269c212b"
+            ]
+        ]
+    },
+    {
+        "id": "f7fdbc07269c212b",
+        "type": "ui_chart",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "group": "1782775dd2324edf",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "label": "Pressure",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2280,
+        "y": 2380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6fede57dc2d5a5f4",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Humidity",
+        "func": "const dataArray = [];\n\nmsg.payload.forEach((data) => {\n\tdataArray.push({\"x\": data.time_stamp * 1000, \n\t                \"y\": data.humidity})\n});\n\nmsg.payload = [{\n\"series\": [\"Humidity\"],\n\"data\": [\n    dataArray\n],\n\"labels\": [\"Humidity\"]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2420,
+        "wires": [
+            [
+                "9314e06c2c1fdf85"
+            ]
+        ]
+    },
+    {
+        "id": "9314e06c2c1fdf85",
+        "type": "ui_chart",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "group": "1782775dd2324edf",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "label": "Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2280,
+        "y": 2420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25881d23f26246cb",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Visibility",
+        "func": "const dataArray = [];\n\nmsg.payload.forEach((data) => {\n\tdataArray.push({\"x\": data.time_stamp * 1000, \n\t                \"y\": data.visibility})\n});\n\nmsg.payload = [{\n\"series\": [\"Visibility\"],\n\"data\": [\n    dataArray\n],\n\"labels\": [\"Visibility\"]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2460,
+        "wires": [
+            [
+                "b23e54a633bfd98a"
+            ]
+        ]
+    },
+    {
+        "id": "b23e54a633bfd98a",
+        "type": "ui_chart",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "group": "1782775dd2324edf",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "label": "Visibility",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2280,
+        "y": 2460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47d61ab96987663d",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Wind Speed",
+        "func": "const dataArray = [];\n\nmsg.payload.forEach((data) => {\n\tdataArray.push({\"x\": data.time_stamp * 1000, \n\t                \"y\": data.wind_speed})\n});\n\nmsg.payload = [{\n\"series\": [\"Wind Speed\"],\n\"data\": [\n    dataArray\n],\n\"labels\": [\"Wind Speed\"]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 2500,
+        "wires": [
+            [
+                "5b347ca655aec7a6"
+            ]
+        ]
+    },
+    {
+        "id": "5b347ca655aec7a6",
+        "type": "ui_chart",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "group": "1782775dd2324edf",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "label": "Wind Speed",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2290,
+        "y": 2500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89028fd2690e4b05",
+        "type": "function",
+        "z": "65f999f3a6504d70",
+        "name": "Clouds",
+        "func": "const dataArray = [];\n\nmsg.payload.forEach((data) => {\n\tdataArray.push({\"x\": data.time_stamp * 1000, \n\t                \"y\": data.clouds})\n});\n\nmsg.payload = [{\n\"series\": [\"Clouds\"],\n\"data\": [\n    dataArray\n],\n\"labels\": [\"Clouds\"]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2540,
+        "wires": [
+            [
+                "afc6d66098c0c1d8"
+            ]
+        ]
+    },
+    {
+        "id": "afc6d66098c0c1d8",
+        "type": "ui_chart",
+        "z": "65f999f3a6504d70",
+        "name": "",
+        "group": "1782775dd2324edf",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "label": "Clouds",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2280,
+        "y": 2540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "256d3ea45a815c8f",
+        "type": "ui_text",
+        "z": "65f999f3a6504d70",
+        "group": "1782775dd2324edf",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Location: ",
+        "format": "{{msg.payload[0].location}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 2100,
+        "y": 2300,
+        "wires": []
     },
     {
         "id": "d74bb850e7fcc16b",
@@ -3351,5 +3693,35 @@
         "db": "weather_db",
         "tz": "",
         "charset": "UTF8"
+    },
+    {
+        "id": "29ba251a68665f67",
+        "type": "ui_group",
+        "name": "Real time",
+        "tab": "3cc6eda23a1e026a",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1782775dd2324edf",
+        "type": "ui_group",
+        "name": "Historical Data",
+        "tab": "3cc6eda23a1e026a",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3cc6eda23a1e026a",
+        "type": "ui_tab",
+        "name": "Weather Dashboard",
+        "icon": "wi-wu-sunny",
+        "disabled": false,
+        "hidden": false
     }
 ]
