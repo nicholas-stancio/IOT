@@ -71,12 +71,28 @@ const Dashboard = {
 
     // -------- Modal Functions ----------
     $('#fetchApiModalFetch').on('click', async () => {
+      const checkState = $('#fetchApiModalCheckBox').is(':checked');
+      const param1 = $('#fetchApiModalEndpointP1').val();
+      const param2 = $('#fetchApiModalEndpointP2').val();
+      const paramCity = $('#fetchApiModalEndpointP3').val();
+      let param = '';
+
+      if (param1 === '' && param2 === '' && paramCity === '') {
+        if (checkState === true) {
+          param = `/?token=${sessionStorage.getItem('accessToken')}`;
+        }
+      } else if (checkState === true) {
+        param = `/?token=${sessionStorage.getItem('accessToken')}&Start=${param1}&End=${param2}&City=${paramCity}`;
+      } else {
+        param = `/?Start=${param1}&End=${param2}&City=${paramCity}`;
+      }
+
       const modalData = {
-        endpoint: $('#fetchApiModalEndpoint').val(),
+        endpoint: $('#fetchApiModalEndpoint').val() + param,
         method: $('#fetchApiModalMethod').val(),
         body: $('#fetchApiModalBody').val(),
       };
-
+      console.log(modalData);
       await api.customFetch(modalData);
     });
     // -------- End ----------

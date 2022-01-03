@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import API_ENDPOINT from './api-endpoint';
 import CONFIG from './config';
+import isJson from './public-functions';
 
 function signUp(user) {
   return fetch(API_ENDPOINT.SIGN_UP, {
@@ -84,21 +85,29 @@ function customFetch(modalData) {
       method: 'GET',
     }).then((response) => response.text())
       .then((data) => {
-        alert(data);
+        if (isJson(data) === true) {
+          alert('Success! Data pasted on console');
+          console.log(data);
+        } else {
+          alert(data);
+        }
       })
       .catch((err) => {
         alert(err);
       });
   }
-  console.log(modalData.body);
-  console.log(JSON.stringify(modalData.body));
   return fetch(`${CONFIG.BASE_URL}${modalData.endpoint}`, {
     method: modalData.method,
     body: modalData.body,
     headers: { 'Content-type': 'application/json' },
   }).then((response) => response.text())
     .then((data) => {
-      alert(data);
+      if (isJson(data) === true) {
+        alert('Success! Data pasted on console');
+        console.log(data);
+      } else {
+        alert(data);
+      }
     })
     .catch((err) => {
       alert(err);
