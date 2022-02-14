@@ -15,7 +15,7 @@ const Dashboard = {
 
     return `
       <div id="embedDiv">
-        <embed src="http://34.124.248.36:1880/ui/" style="width: 100%; height: 93.45vh;">
+        <embed src="http://35.240.225.5:1880/ui/" style="width: 100%; height: 93.45vh;">
       </div>
 
       ${fetchApiModal()}
@@ -36,7 +36,7 @@ const Dashboard = {
     $('.navBarNodeRed').on('click', () => {
       checkToken();
       $('#embedDiv').empty();
-      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/#flow/65f999f3a6504d70" style="width: 100%; height: 93.45vh;">');
+      $('#embedDiv').html('<embed src="http://35.240.225.5:1880/#flow/65f999f3a6504d70" style="width: 100%; height: 93.45vh;">');
     });
 
     $('.navBarMySql').on('click', () => {
@@ -66,7 +66,7 @@ const Dashboard = {
     $('.navBarDashboard').on('click', () => {
       checkToken();
       $('#embedDiv').empty();
-      $('#embedDiv').html('<embed src="http://34.124.248.36:1880/ui/" style="width: 100%; height: 93.45vh;">');
+      $('#embedDiv').html('<embed src="http://35.240.225.5:1880/ui/" style="width: 100%; height: 93.45vh;">');
     });
 
     // -------- Modal Functions ----------
