@@ -9,4 +9,4 @@ Project IOT by Nicholas Stancio Saka
 5. local server available on 'http://localhost:8080/'
 
 # Online live server
-http://35.240.225.5/ver_1.3
+Server Terminated
