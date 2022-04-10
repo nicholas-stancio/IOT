@@ -70,7 +70,8 @@ const Login = {
       });
 
       if (checkErrorVal === true) {
-        api.signIn(user);
+        // api.signIn(user);
+        window.location.href = '#/dashboard';
       }
     });
   },

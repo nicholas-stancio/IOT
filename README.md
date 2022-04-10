@@ -1,6 +1,8 @@
 # IOT - CSE 2019
 Project IOT by Nicholas Stancio Saka
 
+Project API terminated, backend won't work
+
 # Instructions (Running locally)
 1. run 'npm install'
 2. Change base url to 'http://127.0.0.1:1880' in config file
